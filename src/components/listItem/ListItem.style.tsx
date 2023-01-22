@@ -11,8 +11,17 @@ export const ListItemContainer = styled.div`
 `
 
 export const ItemContainer = styled.div`
+  width: 20.15rem;
   display: inline-block;
-  padding: 0 1rem 2rem 1rem;
+  padding: 0 0 2rem 0;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  
+  &:hover {
+    transform: scale(1.025);
+    box-shadow: 0 0 15px rgba(153, 50, 204,.3);
+    border-radius: 10px
+  }
 `
 
 export const MainText = styled.h4`
@@ -34,21 +43,34 @@ export const AvatarSkeleton = styled.div`
 export const InformationContainer = styled.div`
   padding: 0.5rem;
   display: block;
+  
 `
 
 export const AdditionalText = styled.div`
   text-align: start;
   margin-left: 3rem;
-  opacity: 0.5;
+  opacity: 1;
   display: grid;
 `
 
-export const ChannelTitle = styled.a`
+export const ChannelTitle = styled(Link)`
   cursor: pointer;
+  color: white;
+  transition: all 0.2s ease-in-out;
+  opacity: 0.5;
+  
+  &:hover {
+    opacity: 1;
+  }
 `
 
 export const ContentContainer = styled.div`
   width: 90%;
   padding-left: 20%;
+  margin-left: 2.5%;
   padding-top: 5rem;
+`
+
+export const ToVideo = styled(Link)`
+  color: white;
 `

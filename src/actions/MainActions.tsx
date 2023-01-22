@@ -1,4 +1,4 @@
-import {listItem} from "../interfaces/interfaces";
+import {channel, listItem} from "../interfaces/interfaces";
 
 export const listFetched = (list: listItem[]) => {
     return {
@@ -16,5 +16,26 @@ export const listFetching = () => {
 export const listFetchingError = () => {
     return {
         type: 'LIST_FETCHING_ERROR'
+    }
+}
+
+export const currentVideoFetched = (currentVideo: listItem[]) => {
+    return {
+        type: 'CURRENT_VIDEO_FETCHED',
+        payload: currentVideo
+    }
+}
+
+export const currentChannelFetched = (currentChannel: channel) => {
+    return {
+        type: 'CURRENT_CHANNEL_FETCHED',
+        payload: currentChannel
+    }
+}
+
+export const currentCommentsFetched = (currentComments: any) => {
+    return {
+        type: 'CURRENT_COMMENTS_FETCHED',
+        payload: currentComments
     }
 }

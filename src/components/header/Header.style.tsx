@@ -10,8 +10,10 @@ export const HeaderContainer = styled.div`
   justify-content: flex-end;
   padding: 0 6rem 0 6rem;
   position: fixed;
-  background: #362A66;
+  background: rgba(54, 42, 102, .25);
+  backdrop-filter: blur(20px);
   z-index: 99999;
+  
 `
 
 export const SearchPanel = styled.input`

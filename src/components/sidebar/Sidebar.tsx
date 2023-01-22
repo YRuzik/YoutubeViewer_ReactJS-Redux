@@ -1,4 +1,5 @@
 import {SidebarContainer, SideBarItem, SidebarItemHeader, SidebarLogo, SidebarWrapper} from "./Sidebar.style";
+import {Link} from "react-router-dom";
 
 
 const Sidebar = () => {
@@ -11,7 +12,9 @@ const Sidebar = () => {
                 </SidebarLogo>
                 <SidebarItemHeader> <h5>Меню</h5>
                     <SideBarItem>
+                        <Link style={{color: "white"}} to={'/'}>
                         <i className='fa-solid fa-house'></i> Главная
+                        </Link>
                     </SideBarItem>
                     <SideBarItem>
                         <i className='fa-solid fa-arrow-trend-up'></i> Тренды

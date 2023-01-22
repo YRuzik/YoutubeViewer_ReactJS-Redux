@@ -1,6 +1,9 @@
 export interface initialStates {
     list: object[];
     listStatus: string;
+    currentVideo: object[];
+    currentChannel: {};
+    currentComments: {};
 }
 
 export interface listItem {
@@ -31,5 +34,51 @@ export interface listItem {
         viewCount: string;
     }
 
+}
+
+export interface channel {
+    etag: string;
+    id: string;
+    kind: string;
+    snippet: {
+        title: string;
+        description: string;
+        customUrl: string;
+        publishedAt: string;
+        thumbnails: {
+            default: {
+                url: string;
+                width: number;
+                height: number;
+            };
+            medium: {
+                url: string;
+                width: number;
+                height: number;
+            };
+            high: {
+                url: string;
+                width: number;
+                height: number;
+            }
+        };
+        localized: {
+            title: string;
+            description: string;
+        };
+        country: string;
+    };
+    contentDetails: {
+        relatedPlaylists: {
+            likes: string;
+            uploads: string;
+        }
+    };
+    statistics: {
+        viewCount: string;
+        subscriberCount: string;
+        hiddenSubscriberCount: boolean;
+        videoCount: string;
+    }
 }
 

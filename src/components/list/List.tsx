@@ -1,8 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import mainService from "../../services/MainService";
-import {listFetched} from "../../actions/MainActions";
-import {listItem} from "../../interfaces/interfaces";
+import {listFetched, listFetchingError} from "../../actions/MainActions";
 import ListItem from "../listItem/ListItem";
 import {ContentContainer, ListItemContainer} from "../listItem/ListItem.style";
 
@@ -14,9 +13,8 @@ const List = () => {
 
     useEffect(() => {
         getList().then(data => dispatch(listFetched(data.items)))
+            .catch(() => dispatch(listFetchingError()))
     }, [])
-
-    console.log(list)
 
     const renderListItems = (arr: object[]) => {
         return arr.map(({...props}, id) => {

@@ -20,7 +20,19 @@ const MainService = () => {
         )
     }
 
-    return {getList, getChannelId}
+    const getVideoId = async (id: string) => {
+        return (
+            await request(`${_baseUrl}videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${_apiKey}`)
+        )
+    }
+
+    const getAllCommentsOnVideo = async (id: string) => {
+        return (
+            await request(`${_baseUrl}commentThreads?key=${_apiKey}&textFormat=plainText&part=snippet&videoId=${id}&maxResults=50`)
+        )
+    }
+
+    return {getList, getChannelId, getVideoId, getAllCommentsOnVideo}
 }
 
 export default MainService
