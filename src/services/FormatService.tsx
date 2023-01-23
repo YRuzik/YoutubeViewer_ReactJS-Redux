@@ -15,16 +15,26 @@ export function publishedFormat(data: string) {
     const now = new Date()
     const published = new Date(data)
 
-    const diff = Math.round(Math.abs(+now - +published) / 60000)
-    if (diff < 60) {
-        return diff + ' мин.'
-    } else if (diff < 1440) {
-        return Math.round(1440 / diff) + ' д. назад'
-    } else if (diff < 43200) {
-        return Math.round(43200 / diff) + ' ч. назад'
-    } else if (diff < 525600) {
-        return Math.round(525600 / diff) + ' г. назад'
+    const diff = Math.round(Math.abs(+now - +published))
+    let seconds = Math.floor((diff / 1000) % 60),
+        minutes = Math.floor((diff / (1000 * 60)) % 60),
+        hours   = Math.floor((diff / (1000 * 60 * 60)) % 24),
+        days    = Math.floor(diff / (1000 * 60 * 60 * 24) % 30),
+        months  = Math.floor(diff / (1000 * 60 * 60 * 24 * 30) % 12),
+        years   = Math.floor(diff / (1000 * 60 * 60 * 24 * 30 * 12));
+
+    if (years === 0 && months !== 0) {
+        return months + ' мес. назад'
+    } else if (years === 0 && months === 0 && days !== 0) {
+        return days + ' д. назад'
+    } else if (years === 0 && days === 0 && months === 0 && hours !== 0) {
+        return hours + ' ч. назад'
+    } else if (years === 0 && days === 0 && hours === 0 && months === 0 && minutes !== 0) {
+        return minutes + ' мин. назад'
+    } else if (years === 0 && days === 0 && hours === 0 && minutes === 0 && months === 0 && seconds !== 0) {
+        return seconds + ' сек. назад'
     }
+    return years + ' г. назад'
 }
 
 export function descriptionFormat(desc: string) {

@@ -6,7 +6,6 @@ import {
     ItemContainer,
     MainText, ToVideo
 } from "./ListItem.style";
-import {Link} from "react-router-dom";
 import {publishedFormat, viewsFormat} from "../../services/FormatService";
 
 const ListItem = ({props, snippet, statistics, id}: any) => {

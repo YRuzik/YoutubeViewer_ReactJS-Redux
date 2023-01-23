@@ -8,9 +8,9 @@ const MainService = () => {
 
     const {request} = useHttp()
 
-    const getList = async () => {
+    const getList = async (maxResults: string = '50', pageToken: string = '') => {
         return(
-            await request(`${_baseUrl}videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=RU&key=${_apiKey}`)
+            await request(`${_baseUrl}videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&pageToken=${pageToken}&maxResults=${maxResults}&regionCode=RU&key=${_apiKey}`)
         )
     }
 
