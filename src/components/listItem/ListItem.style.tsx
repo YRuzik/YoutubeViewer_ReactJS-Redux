@@ -71,6 +71,6 @@ export const ContentContainer = styled.div`
   padding-top: 5rem;
 `
 
-export const ToVideo = styled(Link)`
+export const ToVideo = styled.div`
   color: white;
 `

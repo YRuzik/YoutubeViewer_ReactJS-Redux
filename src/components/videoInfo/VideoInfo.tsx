@@ -10,13 +10,19 @@ import {AvatarSkeleton} from "../listItem/ListItem.style";
 import mainService from "../../services/MainService";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {currentChannelFetched, currentCommentsFetched, listFetchingError} from "../../actions/MainActions";
+import {
+    currentChannelFetched,
+    currentCommentsFetched,
+    listFetching,
+    listFetchingError
+} from "../../actions/MainActions";
 import {descriptionFormat, publishedFormat, viewsFormat} from "../../services/FormatService";
 import CommentsItem from "../commentsItem/CommentsItem";
+import Skeleton from "../skeleton/Skeleton";
 
 
 const VideoInfo = ({statistics, snippet, videoID}: any) => {
-    const {currentChannel, currentComments}: any = useSelector(state => state)
+    const {currentChannel, currentComments, listStatus}: any = useSelector(state => state)
     const {getChannelId, getAllCommentsOnVideo} = mainService()
     const dispatch = useDispatch()
     const [overflow, setOverflow] = useState(false)
@@ -26,6 +32,7 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
     }
 
     useEffect(() => {
+        dispatch(listFetching())
         getChannelId(snippet.channelId).then(data => dispatch(currentChannelFetched(data.items[0])))
             .catch(() => dispatch(listFetchingError()))
     }, [snippet.channelId])

@@ -13,7 +13,7 @@ const ListItem = ({props, snippet, statistics, id}: any) => {
 
     return (
         <ItemContainer>
-            <ToVideo to={`videos/${id}`}>
+            <ToVideo>
                 <img alt={'thumbnail'} src={snippet.thumbnails.medium.url} style={{borderRadius: '10px'}}/>
                 <InformationContainer>
                     <AvatarSkeleton></AvatarSkeleton>

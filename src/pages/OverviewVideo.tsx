@@ -6,10 +6,10 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {currentChannelFetched, currentVideoFetched, listFetching, listFetchingError} from "../actions/MainActions";
 import VideoInfo from "../components/videoInfo/VideoInfo";
-
+import Skeleton from "../components/skeleton/Skeleton";
 
 const OverviewVideo = () => {
-    const {currentVideo}: any = useSelector(state => state)
+    const {currentVideo, listStatus}: any = useSelector(state => state)
 
     const {videoID} = useParams()
     const {getVideoId} = mainService()
@@ -23,7 +23,7 @@ const OverviewVideo = () => {
 
     return (
         <ContentContainer>
-            <Player videoID={videoID}/>
+            {listStatus === 'loading' ? <Skeleton big={true}/> : <Player videoID={videoID}/>}
             {currentVideo.snippet !== undefined ? <VideoInfo snippet={currentVideo.snippet} statistics={currentVideo.statistics} videoID={videoID}/> : null}
         </ContentContainer>
     )

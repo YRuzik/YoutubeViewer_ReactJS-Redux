@@ -26,14 +26,11 @@ const Anim = styled.div`
 `
 
 const SkeletonContainer = styled.div`
-  position: relative;
-  width: auto;
-  height: 100%;
 `
 
 const SkeletonThumbnail = styled(Anim)`
   width: 100%;
-  min-height: 10rem;
+  min-height: 11.5rem;
   border-radius: 10px;
 `
 
@@ -69,11 +66,10 @@ const SkeletonAvatar = styled(Anim)`
   position: absolute;
 `
 
-const Skeleton = () => {
+const Skeleton = ({big}: any) => {
     return (
-        <ContentContainer>
             <SkeletonContainer>
-                <SkeletonThumbnail/>
+                <SkeletonThumbnail style={big ? {minHeight: '45rem'} : {minHeight: '11.5rem'}}/>
                 <SkeletonContent>
                     <SkeletonAvatar/>
                     <SkeletonTitleLine/>
@@ -81,7 +77,6 @@ const Skeleton = () => {
                     <SkeletonStatistics/>
                 </SkeletonContent>
             </SkeletonContainer>
-        </ContentContainer>
     )
 }
 
