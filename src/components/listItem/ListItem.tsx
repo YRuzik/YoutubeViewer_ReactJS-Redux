@@ -9,7 +9,7 @@ import {
 } from "./ListItem.style";
 import {publishedFormat, viewsFormat} from "../../services/FormatService";
 import {useDispatch, useSelector} from "react-redux";
-import {addWatchLaterVideo, videoIDFetched} from "../../actions/MainActions";
+import {addFavorites, addWatchLaterVideo, videoIDFetched} from "../../actions/MainActions";
 import {useRef, useState} from "react";
 import {SideBarIcon} from "../sidebar/Sidebar.style";
 import useOnClickOutside from "../../hooks/onClickOutside.hook";
@@ -40,7 +40,7 @@ const ListItem = ({props, snippet, statistics, id, onOpen}: any) => {
                     <SideBarIcon style={{width: '2rem'}}><i className="fa-regular fa-clock"></i></SideBarIcon> Смотреть позже
                 </AdditionalLine>
 
-                <AdditionalLine>
+                <AdditionalLine onClick={() => getVideoId(id).then(data => dispatch(addFavorites(data.items)))}>
                     <SideBarIcon style={{width: '2rem'}}><i className="fa-regular fa-bookmark"></i></SideBarIcon> Избранное
                 </AdditionalLine>
             </AdditionalContent>

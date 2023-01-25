@@ -6,6 +6,7 @@ import ListItem from "../listItem/ListItem";
 import {ContentContainer, ListItemContainer} from "../listItem/ListItem.style";
 import Skeleton from "../skeleton/Skeleton";
 import Modal from "../modal/Modal";
+import {loadState} from "../../store/BrowserStorage";
 
 
 const List = () => {

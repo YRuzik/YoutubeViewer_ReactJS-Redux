@@ -6,6 +6,8 @@ import SearchListItem from "../components/searchListItem/SearchListItem";
 import {addWatchLaterVideo, removeWatchLaterVideo} from "../actions/MainActions";
 import Modal from "../components/modal/Modal";
 import {PageNumbersCustom} from "./styles";
+import {loadState} from "../store/BrowserStorage";
+import Skeleton from "../components/skeleton/Skeleton";
 
 
 const WatchLaterPage = () => {
@@ -24,7 +26,7 @@ const WatchLaterPage = () => {
 
     const onDeleteVideo = useCallback ((id: number | string) => {
         dispatch(removeWatchLaterVideo(id))
-    }, [watchLater])
+    }, [])
 
     function handleClick(event: any) {
         setCurPage(Number(event.target.id))
@@ -36,7 +38,7 @@ const WatchLaterPage = () => {
     const LastVideoID = curPage * videosPerPage;
     const FirstVideoID = LastVideoID - videosPerPage;
 
-    const content = renderListItems(watchLater)
+    const content = renderListItems(watchLater!)
 
     const currentVideos = content.slice(FirstVideoID, LastVideoID);
 
@@ -69,19 +71,20 @@ const WatchLaterPage = () => {
             <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}/>
             <ContentContainer>
                 <h1>Смотреть позже</h1>
-                {watchLater.length > 0 ?
-                    <>
-                        <div>
-                        <ul>
-                            {renderCurrentVideos}
-                        </ul>
-                        <PageNumbersCustom id="page-numbers">
-                            {renderPageNumbers}
-                        </PageNumbersCustom>
-                        </div>
-                    </>
-                    :
-                    <h2>Пусто</h2>}
+                {content.length > 0 ?
+                        <>
+                            <div>
+                                <ul>
+                                    {renderCurrentVideos}
+                                </ul>
+                                <PageNumbersCustom id="page-numbers">
+                                    {renderPageNumbers}
+                                </PageNumbersCustom>
+                            </div>
+                        </>
+                        :
+                        <h2>Пусто</h2>}
+
             </ContentContainer>
         </>
     )

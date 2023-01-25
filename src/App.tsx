@@ -12,6 +12,8 @@ import SearchList from "./components/searchList/SearchList";
 import FavoritePage from "./pages/FavoritePage";
 import WatchLaterPage from "./pages/WatchLaterPage";
 
+
+
 function App() {
 
     window.onbeforeunload = function () {

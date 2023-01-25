@@ -1,4 +1,5 @@
 import {initialStates} from "../interfaces/interfaces";
+import {loadState} from "../store/BrowserStorage";
 
 const initialState: initialStates = {
     listStatus: 'loading',
@@ -9,8 +10,8 @@ const initialState: initialStates = {
     videoID: '',
     searchList: [],
 
-    watchLater: [],
-    favorites: []
+    watchLater: loadState('watchLater'),
+    favorites: loadState('favorites')
 }
 
 
@@ -64,7 +65,7 @@ const mainReducer = (state = initialState, action: any) => {
             }
         case 'ADD_WATCH_LATER_CONTENT':
             const {id} = action.payload[0]
-            let dup = state.watchLater.find((obj: any) => obj.id === id)
+            const dup = state.watchLater.find((obj: any) => obj.id === id)
             return dup ? {
                 ...state,
                 watchLater: state.watchLater,
@@ -81,6 +82,26 @@ const mainReducer = (state = initialState, action: any) => {
                 ...state,
                 watchLater: state.watchLater.filter((item, id) => id !== newID)
             }
+
+        case 'ADD_FAVORITES':
+            const myID = action.payload[0].id
+            const dups = state.favorites.find((obj: any) => obj.id === myID)
+            return dups ? {
+                ...state,
+                favorites: state.favorites,
+                listStatus: 'idle',
+            } : {
+                ...state,
+                favorites: [...state.favorites, ...action.payload],
+                listStatus: 'idle',
+            }
+
+        case 'REMOVE_FAVORITES':
+            const newIDFavorites = action.payload;
+            return {
+                ...state,
+                favorites: state.favorites.filter((item, id) => id !== newIDFavorites)
+                }
         default: return state
     }
 }

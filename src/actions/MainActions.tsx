@@ -67,3 +67,17 @@ export const removeWatchLaterVideo = (watchLaterID: any) => {
         payload: watchLaterID
     }
 }
+
+export const addFavorites = (favoriteVideo: any) => {
+    return {
+        type: 'ADD_FAVORITES',
+        payload: favoriteVideo
+    }
+}
+
+export const removeFavorites = (favoritesID: any) => {
+    return {
+        type: 'REMOVE_FAVORITES',
+        payload: favoritesID
+    }
+}

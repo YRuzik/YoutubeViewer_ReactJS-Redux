@@ -1,5 +1,3 @@
-import {ContentContainer} from "../components/listItem/ListItem.style";
-import {useParams} from "react-router";
 import Player from "../components/player/Player";
 import mainService from "../services/MainService";
 import {useEffect} from "react";

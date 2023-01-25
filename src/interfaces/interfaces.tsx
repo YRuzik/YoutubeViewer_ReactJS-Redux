@@ -8,7 +8,7 @@ export interface initialStates {
     searchList: object[];
 
     watchLater: object[];
-    favorites: [];
+    favorites: object[];
 }
 
 export interface listItem {
