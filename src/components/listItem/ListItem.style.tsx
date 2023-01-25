@@ -20,7 +20,8 @@ export const ItemContainer = styled.div`
   &:hover {
     transform: scale(1.025);
     box-shadow: 0 0 15px rgba(153, 50, 204,.3);
-    border-radius: 10px
+    border-radius: 10px;
+    z-index: 10000;
   }
 `
 
@@ -28,7 +29,7 @@ export const MainText = styled.h4`
   padding: 0;
   margin: 0;
   text-align: start;
-  width: 80%;
+  width: 75%;
   margin-left: 3rem;
 `
 
@@ -43,7 +44,6 @@ export const AvatarSkeleton = styled.div`
 export const InformationContainer = styled.div`
   padding: 0.5rem;
   display: block;
-  
 `
 
 export const AdditionalText = styled.div`
@@ -73,4 +73,55 @@ export const ContentContainer = styled.div`
 
 export const ToVideo = styled.div`
   color: white;
+`
+
+export const MoreActions = styled.div`
+  position: absolute;
+  margin-left: 17.4rem;
+  margin-top: 11.75rem;
+`
+
+export const ActionsWrapper = styled.div`
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  position: relative;
+  
+  &:hover {
+    background: rgba(100, 55, 204,.25);
+  }
+`
+
+export const AdditionalContent = styled.div`
+  position: absolute;
+  z-index: 10000;
+  width: 15rem;
+  height: auto;
+  background: rebeccapurple;
+  border-radius: 10px;
+  margin: 0rem 0 0 -12rem;
+`
+
+export const AdditionalLine = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: 2rem;
+  padding: 0.5rem 0 0.5rem 2rem;
+  user-select: none;
+  
+  &:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  &:hover {
+    background: mediumpurple;
+  }
 `

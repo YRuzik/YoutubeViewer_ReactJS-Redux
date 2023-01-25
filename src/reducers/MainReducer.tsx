@@ -5,7 +5,9 @@ const initialState: initialStates = {
     list: [],
     currentVideo: [],
     currentChannel: {},
-    currentComments: []
+    currentComments: [],
+    videoID: '',
+    searchList: []
 }
 
 
@@ -43,6 +45,18 @@ const mainReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 currentComments: action.payload,
+                listStatus: 'idle'
+            }
+        case 'VIDEO_ID_FETCHED':
+            return {
+                ...state,
+                videoID: action.payload,
+                listStatus: 'idle'
+            }
+        case 'SEARCH_LIST_FETCHED':
+            return {
+                ...state,
+                searchList: action.payload,
                 listStatus: 'idle'
             }
         default: return state

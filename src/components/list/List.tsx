@@ -5,6 +5,7 @@ import {listFetched, listFetching, listFetchingError} from "../../actions/MainAc
 import ListItem from "../listItem/ListItem";
 import {ContentContainer, ListItemContainer} from "../listItem/ListItem.style";
 import Skeleton from "../skeleton/Skeleton";
+import Modal from "../modal/Modal";
 
 
 const List = () => {
@@ -14,6 +15,8 @@ const List = () => {
     const [myNextPageToken, setMyNextPageToken] = useState()
     const [first, setFirst] = useState(true)
     const [loadingNew, setLoadingNew] = useState(false)
+
+    const [isOpen, setIsOpen] = useState(false)
 
     const listPagination = async () => {
         await getList('50', myNextPageToken).then(data => {
@@ -25,6 +28,7 @@ const List = () => {
     }
 
     useEffect(() => {
+        dispatch(listFetching())
         listPagination().then()
         return () => {
             setFirst(true)
@@ -40,7 +44,7 @@ const List = () => {
     const renderListItems = (arr: object[]) => {
         return arr.map(({...props}, id) => {
             return (
-                <ListItem key={id} {...props}/>
+                <ListItem key={id} {...props} onOpen={() => setIsOpen(true)}/>
             )
         })
     }
@@ -54,7 +58,7 @@ const List = () => {
         })
     }
 
-    const infinityScroll =() => {
+    const infinityScroll = () => {
             if (window.pageYOffset + document.documentElement.clientHeight >= document.body.scrollHeight - 300) {
                 listPagination().then()
                 setLoadingNew(true)
@@ -67,6 +71,7 @@ const List = () => {
 
     return (
         <ContentContainer>
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}/>
             <h1 style={{textAlign: "start", paddingBottom: '1rem'}}>Рекомендации</h1>
             <ListItemContainer>
                 {listStatus === 'loading' && first ? skeletons : listOfVideos}

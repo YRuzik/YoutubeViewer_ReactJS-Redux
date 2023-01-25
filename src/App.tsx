@@ -7,8 +7,17 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Header from "./components/header/Header";
 import MainPage from "./pages/MainPage";
 import OverviewVideo from "./pages/OverviewVideo";
+import Modal from "./components/modal/Modal";
+import SearchList from "./components/searchList/SearchList";
+import FavoritePage from "./pages/FavoritePage";
+import WatchLaterPage from "./pages/WatchLaterPage";
 
 function App() {
+
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+
   return (
       <Router>
          <div className="App">
@@ -22,9 +31,13 @@ function App() {
 
                         <Route index element={<MainPage/>}/>
 
-                        <Route path={'videos/:videoID'} element={<OverviewVideo/>}/>
+                        <Route path={'search/:searchParams'} element={<SearchList/>}/>
 
                         <Route path={'channels/:channelID'} element={''}/>
+
+                        <Route path={'favorite'} element={<FavoritePage/>}/>
+
+                        <Route path={'watchLater'} element={<WatchLaterPage/>}/>
 
                     </Route>
 

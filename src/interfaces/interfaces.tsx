@@ -4,6 +4,8 @@ export interface initialStates {
     currentVideo: object[];
     currentChannel: {};
     currentComments: {};
+    videoID: string;
+    searchList: object[];
 }
 
 export interface listItem {

@@ -4,7 +4,7 @@ import {useHttp} from "../hooks/http.hook";
 
 const MainService = () => {
     const _baseUrl = 'https://youtube.googleapis.com/youtube/v3/'
-    const _apiKey = 'AIzaSyBzPaEWg4TftjQVn2g2B8nx1f38D8o3KMg'
+    const _apiKey = /*'AIzaSyBzPaEWg4TftjQVn2g2B8nx1f38D8o3KMg'*/ 'AIzaSyDtQwWwcExWtlnMB1Qld0dy1OKh2ShZVvY'
 
     const {request} = useHttp()
 
@@ -32,7 +32,13 @@ const MainService = () => {
         )
     }
 
-    return {getList, getChannelId, getVideoId, getAllCommentsOnVideo}
+    const getSearchList = async (q: string, pageToken: string = '') => {
+        return (
+            await request(`${_baseUrl}search?part=snippet&maxResults=50&q=${q}&pageToken=${pageToken}&regionCode=RU&key=${_apiKey}`)
+        )
+    }
+
+    return {getList, getChannelId, getVideoId, getAllCommentsOnVideo, getSearchList}
 }
 
 export default MainService

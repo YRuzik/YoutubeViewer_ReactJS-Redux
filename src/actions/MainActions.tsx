@@ -39,3 +39,17 @@ export const currentCommentsFetched = (currentComments: any) => {
         payload: currentComments
     }
 }
+
+export const videoIDFetched = (videoID: string) => {
+    return {
+        type: 'VIDEO_ID_FETCHED',
+        payload: videoID
+    }
+}
+
+export const searchListFetched = (searchList: any) => {
+    return {
+        type: 'SEARCH_LIST_FETCHED',
+        payload: searchList
+    }
+}

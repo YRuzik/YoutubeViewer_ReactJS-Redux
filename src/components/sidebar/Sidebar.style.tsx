@@ -60,3 +60,9 @@ export const SideBarItem = styled.li`
       border-left: 3px solid #A187C5;
     }
 `
+
+export const SideBarIcon = styled.div`
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+`

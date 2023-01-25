@@ -1,4 +1,11 @@
-import {SidebarContainer, SideBarItem, SidebarItemHeader, SidebarLogo, SidebarWrapper} from "./Sidebar.style";
+import {
+    SidebarContainer,
+    SideBarIcon,
+    SideBarItem,
+    SidebarItemHeader,
+    SidebarLogo,
+    SidebarWrapper
+} from "./Sidebar.style";
 import {Link} from "react-router-dom";
 
 
@@ -6,25 +13,40 @@ const Sidebar = () => {
     return (
         <SidebarWrapper>
             <SidebarContainer>
+
                 <SidebarLogo>
                     <i className='fas fa-shekel-sign fa-4x' style={{color: '#A187C5'}}></i>
                     <h2>Now.Vid</h2>
                 </SidebarLogo>
+
                 <SidebarItemHeader> <h5>Меню</h5>
+                    <Link style={{color: "white"}} to={'/'}>
                     <SideBarItem>
-                        <Link style={{color: "white"}} to={'/'}>
-                        <i className='fa-solid fa-house'></i> Главная
-                        </Link>
+                        <SideBarIcon><i className='fa-solid fa-house'></i></SideBarIcon> Главная
                     </SideBarItem>
-                    <SideBarItem>
-                        <i className='fa-solid fa-arrow-trend-up'></i> Тренды
-                    </SideBarItem>
+                    </Link>
                 </SidebarItemHeader>
+
+                <SidebarItemHeader> <h5>Закладки</h5>
+                    <Link style={{color: "white"}} to={'/watchLater'}>
+                        <SideBarItem>
+                             <SideBarIcon><i className="fa-regular fa-clock"></i></SideBarIcon> Смотреть позже
+                        </SideBarItem>
+                    </Link>
+
+                    <Link style={{color: "white"}} to={'/favorite'}>
+                        <SideBarItem>
+                             <SideBarIcon><i className="fa-regular fa-bookmark"></i></SideBarIcon> Избранное
+                        </SideBarItem>
+                    </Link>
+                </SidebarItemHeader>
+
                 <SidebarItemHeader> <h5>Основное</h5>
                     <SideBarItem>
-                        <i className='fa fa-sign-out'></i> Выйти
+                         <SideBarIcon><i className='fa fa-sign-out'></i></SideBarIcon> Выйти
                     </SideBarItem>
                 </SidebarItemHeader>
+
             </SidebarContainer>
         </SidebarWrapper>
     )

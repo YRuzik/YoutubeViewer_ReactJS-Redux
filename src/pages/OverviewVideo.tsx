@@ -9,23 +9,21 @@ import VideoInfo from "../components/videoInfo/VideoInfo";
 import Skeleton from "../components/skeleton/Skeleton";
 
 const OverviewVideo = () => {
-    const {currentVideo, listStatus}: any = useSelector(state => state)
+    const {currentVideo, listStatus, videoID}: any = useSelector(state => state)
 
-    const {videoID} = useParams()
     const {getVideoId} = mainService()
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(listFetching())
         if (videoID) getVideoId(videoID).then(data => dispatch(currentVideoFetched(data.items[0])))
             .catch(() => dispatch(listFetchingError()))
     }, [])
 
     return (
-        <ContentContainer>
+        <>
             {listStatus === 'loading' ? <Skeleton big={true}/> : <Player videoID={videoID}/>}
             {currentVideo.snippet !== undefined ? <VideoInfo snippet={currentVideo.snippet} statistics={currentVideo.statistics} videoID={videoID}/> : null}
-        </ContentContainer>
+        </>
     )
 }
 

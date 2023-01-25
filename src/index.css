@@ -8,6 +8,28 @@
   box-sizing: border-box;
 }
 
+*,
+html * /* override x.xhtml.ru style */
+{
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+*::-webkit-scrollbar,
+html *::-webkit-scrollbar {
+  height: 12px;
+  width: 6px;
+}
+*::-webkit-scrollbar-track,
+html *::-webkit-scrollbar-track {
+  background: linear-gradient(45deg, rgba(36,28,68,1) 0%, rgba(54,42,102,1) 90%, rgba(76,60,142,1) 100%);
+}
+*::-webkit-scrollbar-thumb,
+html *::-webkit-scrollbar-thumb {
+  background-color: mediumpurple;
+  border-radius: 5px;
+}
+
 html, body {
   min-height: 100%
 }

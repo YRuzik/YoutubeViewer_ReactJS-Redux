@@ -18,7 +18,6 @@ import {
 } from "../../actions/MainActions";
 import {descriptionFormat, publishedFormat, viewsFormat} from "../../services/FormatService";
 import CommentsItem from "../commentsItem/CommentsItem";
-import Skeleton from "../skeleton/Skeleton";
 
 
 const VideoInfo = ({statistics, snippet, videoID}: any) => {
