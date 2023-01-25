@@ -7,7 +7,10 @@ const initialState: initialStates = {
     currentChannel: {},
     currentComments: [],
     videoID: '',
-    searchList: []
+    searchList: [],
+
+    watchLater: [],
+    favorites: []
 }
 
 
@@ -58,6 +61,25 @@ const mainReducer = (state = initialState, action: any) => {
                 ...state,
                 searchList: action.payload,
                 listStatus: 'idle'
+            }
+        case 'ADD_WATCH_LATER_CONTENT':
+            const {id} = action.payload[0]
+            let dup = state.watchLater.find((obj: any) => obj.id === id)
+            return dup ? {
+                ...state,
+                watchLater: state.watchLater,
+                listStatus: 'idle',
+            } : {
+                ...state,
+                watchLater: [...state.watchLater, ...action.payload],
+                listStatus: 'idle',
+            }
+
+        case 'REMOVE_ADD_WATCH_LATER_VIDEO':
+            const newID = action.payload;
+            return {
+                ...state,
+                watchLater: state.watchLater.filter((item, id) => id !== newID)
             }
         default: return state
     }

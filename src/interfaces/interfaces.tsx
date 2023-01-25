@@ -6,6 +6,9 @@ export interface initialStates {
     currentComments: {};
     videoID: string;
     searchList: object[];
+
+    watchLater: object[];
+    favorites: [];
 }
 
 export interface listItem {

@@ -8,17 +8,22 @@ import {
     MainText, MoreActions, ToVideo
 } from "./ListItem.style";
 import {publishedFormat, viewsFormat} from "../../services/FormatService";
-import {useDispatch} from "react-redux";
-import {videoIDFetched} from "../../actions/MainActions";
+import {useDispatch, useSelector} from "react-redux";
+import {addWatchLaterVideo, videoIDFetched} from "../../actions/MainActions";
 import {useRef, useState} from "react";
 import {SideBarIcon} from "../sidebar/Sidebar.style";
 import useOnClickOutside from "../../hooks/onClickOutside.hook";
+import mainService from "../../services/MainService";
 
 const ListItem = ({props, snippet, statistics, id, onOpen}: any) => {
+    const {watchLater}: any = useSelector(state => state)
+
     const dispatch = useDispatch()
     const onClickOutside = useOnClickOutside
     const [additionalContent, setAdditionalContent] = useState(false)
     const additionalWindow = useRef() as React.MutableRefObject<HTMLInputElement>
+
+    const {getVideoId} = mainService()
 
     if (snippet.title.length > 41) snippet.title = snippet.title.slice(0, 41) + '...'
 
@@ -31,7 +36,7 @@ const ListItem = ({props, snippet, statistics, id, onOpen}: any) => {
     const additionalBody = () => {
         return (
             <AdditionalContent ref={additionalWindow}>
-                <AdditionalLine>
+                <AdditionalLine onClick={() => getVideoId(id).then(data => dispatch(addWatchLaterVideo(data.items)))}>
                     <SideBarIcon style={{width: '2rem'}}><i className="fa-regular fa-clock"></i></SideBarIcon> Смотреть позже
                 </AdditionalLine>
 

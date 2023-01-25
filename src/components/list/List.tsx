@@ -33,6 +33,7 @@ const List = () => {
         return () => {
             setFirst(true)
             window.removeEventListener('scroll', infinityScroll)
+            dispatch(listFetched([]))
         }
     }, [])
 

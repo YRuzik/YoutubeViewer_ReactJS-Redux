@@ -6,10 +6,15 @@ import {
     SidebarLogo,
     SidebarWrapper
 } from "./Sidebar.style";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 
 const Sidebar = () => {
+    const on = {
+        opacity: '1',
+        color: 'white'
+    }
+
     return (
         <SidebarWrapper>
             <SidebarContainer>
@@ -20,25 +25,25 @@ const Sidebar = () => {
                 </SidebarLogo>
 
                 <SidebarItemHeader> <h5>Меню</h5>
-                    <Link style={{color: "white"}} to={'/'}>
+                    <NavLink style={({isActive}) => isActive ? on : {color: 'white'}} to={'/'}>
                     <SideBarItem>
                         <SideBarIcon><i className='fa-solid fa-house'></i></SideBarIcon> Главная
                     </SideBarItem>
-                    </Link>
+                    </NavLink>
                 </SidebarItemHeader>
 
                 <SidebarItemHeader> <h5>Закладки</h5>
-                    <Link style={{color: "white"}} to={'/watchLater'}>
-                        <SideBarItem>
+                    <NavLink to={'/watchLater'}>
+                        <SideBarItem >
                              <SideBarIcon><i className="fa-regular fa-clock"></i></SideBarIcon> Смотреть позже
                         </SideBarItem>
-                    </Link>
+                    </NavLink>
 
-                    <Link style={{color: "white"}} to={'/favorite'}>
+                    <NavLink style={{color: "white"}} to={'/favorite'}>
                         <SideBarItem>
                              <SideBarIcon><i className="fa-regular fa-bookmark"></i></SideBarIcon> Избранное
                         </SideBarItem>
-                    </Link>
+                    </NavLink>
                 </SidebarItemHeader>
 
                 <SidebarItemHeader> <h5>Основное</h5>

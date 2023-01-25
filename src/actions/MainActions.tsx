@@ -53,3 +53,17 @@ export const searchListFetched = (searchList: any) => {
         payload: searchList
     }
 }
+
+export const addWatchLaterVideo = (watchLaterVideo: any) => {
+    return {
+        type: 'ADD_WATCH_LATER_CONTENT',
+        payload: watchLaterVideo
+    }
+}
+
+export const removeWatchLaterVideo = (watchLaterID: any) => {
+    return {
+        type: 'REMOVE_ADD_WATCH_LATER_VIDEO',
+        payload: watchLaterID
+    }
+}
