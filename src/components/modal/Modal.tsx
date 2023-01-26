@@ -3,6 +3,7 @@ import {createPortal} from "react-dom";
 import OverviewVideo from "../../pages/OverviewVideo";
 import {useEffect, useRef} from "react";
 import useOnClickOutside from "../../hooks/onClickOutside.hook";
+import React from "react";
 
 
 const Modal = ({isOpen, onClose}: any) => {

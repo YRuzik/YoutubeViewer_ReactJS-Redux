@@ -18,10 +18,10 @@ import {
 } from "../../actions/MainActions";
 import {descriptionFormat, publishedFormat, viewsFormat} from "../../services/FormatService";
 import CommentsItem from "../commentsItem/CommentsItem";
-
+import React from "react";
 
 const VideoInfo = ({statistics, snippet, videoID}: any) => {
-    const {currentChannel, currentComments, listStatus}: any = useSelector(state => state)
+    const {currentChannel, currentComments}: any = useSelector(state => state)
     const {getChannelId, getAllCommentsOnVideo} = mainService()
     const dispatch = useDispatch()
     const [overflow, setOverflow] = useState(false)

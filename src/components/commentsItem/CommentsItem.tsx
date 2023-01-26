@@ -9,6 +9,7 @@ import {
     LikeCounter
 } from "./CommentsItem.style";
 import {publishedFormat} from "../../services/FormatService";
+import React from "react";
 
 
 const CommentsItem = ({props, snippet}: any) => {

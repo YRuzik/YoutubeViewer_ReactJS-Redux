@@ -2,9 +2,10 @@ import Player from "../components/player/Player";
 import mainService from "../services/MainService";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {currentChannelFetched, currentVideoFetched, listFetching, listFetchingError} from "../actions/MainActions";
+import {currentVideoFetched, listFetchingError} from "../actions/MainActions";
 import VideoInfo from "../components/videoInfo/VideoInfo";
 import Skeleton from "../components/skeleton/Skeleton";
+import React from "react";
 
 const OverviewVideo = () => {
     const {currentVideo, listStatus, videoID}: any = useSelector(state => state)

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {AvatarSkeleton, ContentContainer} from "../listItem/ListItem.style";
+import React from "react";
 
 const Anim = styled.div`
   position: relative;

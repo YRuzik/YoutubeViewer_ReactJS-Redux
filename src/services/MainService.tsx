@@ -1,4 +1,3 @@
-import {useCallback} from "react";
 import {useHttp} from "../hooks/http.hook";
 
 
@@ -8,7 +7,7 @@ const MainService = () => {
 
     const {request} = useHttp()
 
-    const getList = async (maxResults: string = '50', pageToken: string = '') => {
+    const getList = async (maxResults = '50', pageToken = '') => {
         return(
             await request(`${_baseUrl}videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&pageToken=${pageToken}&maxResults=${maxResults}&regionCode=RU&key=${_apiKey}`)
         )
@@ -32,7 +31,7 @@ const MainService = () => {
         )
     }
 
-    const getSearchList = async (q: string, pageToken: string = '') => {
+    const getSearchList = async (q: string, pageToken = '') => {
         return (
             await request(`${_baseUrl}search?part=snippet&maxResults=50&q=${q}&pageToken=${pageToken}&regionCode=RU&key=${_apiKey}`)
         )

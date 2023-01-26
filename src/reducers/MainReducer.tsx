@@ -63,7 +63,7 @@ const mainReducer = (state = initialState, action: any) => {
                 searchList: action.payload,
                 listStatus: 'idle'
             }
-        case 'ADD_WATCH_LATER_CONTENT':
+        case 'ADD_WATCH_LATER_CONTENT': {
             const {id} = action.payload[0]
             const dup = state.watchLater.find((obj: any) => obj.id === id)
             return dup ? {
@@ -75,15 +75,17 @@ const mainReducer = (state = initialState, action: any) => {
                 watchLater: [...state.watchLater, ...action.payload],
                 listStatus: 'idle',
             }
+        }
 
-        case 'REMOVE_ADD_WATCH_LATER_VIDEO':
+        case 'REMOVE_ADD_WATCH_LATER_VIDEO': {
             const newID = action.payload;
             return {
                 ...state,
                 watchLater: state.watchLater.filter((item, id) => id !== newID)
             }
+        }
 
-        case 'ADD_FAVORITES':
+        case 'ADD_FAVORITES': {
             const myID = action.payload[0].id
             const dups = state.favorites.find((obj: any) => obj.id === myID)
             return dups ? {
@@ -95,15 +97,17 @@ const mainReducer = (state = initialState, action: any) => {
                 favorites: [...state.favorites, ...action.payload],
                 listStatus: 'idle',
             }
+        }
 
-        case 'REMOVE_FAVORITES':
+        case 'REMOVE_FAVORITES': {
             const newIDFavorites = action.payload;
             return {
                 ...state,
                 favorites: state.favorites.filter((item, id) => id !== newIDFavorites)
                 }
+        }
         default: return state
-    }
+            }
 }
 
 export default mainReducer

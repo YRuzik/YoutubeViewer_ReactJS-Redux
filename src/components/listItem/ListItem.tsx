@@ -8,12 +8,13 @@ import {
     MainText, MoreActions, ToVideo
 } from "./ListItem.style";
 import {publishedFormat, viewsFormat} from "../../services/FormatService";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {addFavorites, addWatchLaterVideo, videoIDFetched} from "../../actions/MainActions";
 import {useRef, useState} from "react";
 import {SideBarIcon} from "../sidebar/Sidebar.style";
 import useOnClickOutside from "../../hooks/onClickOutside.hook";
 import mainService from "../../services/MainService";
+import React from "react";
 
 const ListItem = ({props, snippet, statistics, id, onOpen}: any) => {
 

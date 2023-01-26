@@ -1,12 +1,11 @@
 import {useDispatch, useSelector} from "react-redux";
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import mainService from "../../services/MainService";
 import {listFetched, listFetching, listFetchingError} from "../../actions/MainActions";
 import ListItem from "../listItem/ListItem";
 import {ContentContainer, ListItemContainer} from "../listItem/ListItem.style";
 import Skeleton from "../skeleton/Skeleton";
 import Modal from "../modal/Modal";
-import {loadState} from "../../store/BrowserStorage";
 
 
 const List = () => {
@@ -29,6 +28,7 @@ const List = () => {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(listFetching())
         listPagination().then()
         return () => {

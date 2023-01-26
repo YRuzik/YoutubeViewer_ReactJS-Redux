@@ -6,15 +6,15 @@ import {
     SearchListItemThumbnail,
     SearchListItemTitle
 } from "./SearchListItem.style";
-import {publishedFormat, viewsFormat} from "../../services/FormatService";
+import {publishedFormat} from "../../services/FormatService";
 import {AvatarSkeleton, ChannelTitle} from "../listItem/ListItem.style";
-import {useEffect} from "react";
 import {SubscribeButton} from "../videoInfo/VideoInfo.style";
 import {videoIDFetched} from "../../actions/MainActions";
 import {useDispatch} from "react-redux";
+import React from "react";
 
 
-const SearchListItem = ({props, snippet, statistics, id, onOpen}: any) => {
+const SearchListItem = ({props, snippet, id, onOpen}: any) => {
     const dispatch = useDispatch()
 
     return (

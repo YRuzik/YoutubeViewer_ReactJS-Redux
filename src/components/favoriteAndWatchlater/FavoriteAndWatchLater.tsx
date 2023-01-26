@@ -8,6 +8,7 @@ import {
 import {publishedFormat, viewsFormat} from "../../services/FormatService";
 import {videoIDFetched} from "../../actions/MainActions";
 import {useDispatch} from "react-redux";
+import React from "react";
 
 const FavoriteAndWatchLater = ({props, snippet, statistics, onDelete, onOpen, id}: any) => {
     const dispatch = useDispatch()

@@ -16,7 +16,7 @@ export function publishedFormat(data: string) {
     const published = new Date(data)
 
     const diff = Math.round(Math.abs(+now - +published))
-    let seconds = Math.floor((diff / 1000) % 60),
+    const seconds = Math.floor((diff / 1000) % 60),
         minutes = Math.floor((diff / (1000 * 60)) % 60),
         hours   = Math.floor((diff / (1000 * 60 * 60)) % 24),
         days    = Math.floor(diff / (1000 * 60 * 60 * 24) % 30),

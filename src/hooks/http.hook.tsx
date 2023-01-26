@@ -10,7 +10,6 @@ export const useHttp: any = () => {
         },
     ) => {
 
-        try {
             const response = await fetch(url, {method, body, headers});
 
             if (!response.ok) {
@@ -20,9 +19,6 @@ export const useHttp: any = () => {
             const data = await response.json();
 
             return data;
-        } catch(e) {
-            throw e;
-        }
     }, []);
 
     return {request}

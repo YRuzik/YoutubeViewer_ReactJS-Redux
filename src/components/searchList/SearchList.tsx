@@ -1,6 +1,5 @@
 import {ContentContainer} from "../listItem/ListItem.style";
 import {useParams} from "react-router";
-import ListItem from "../listItem/ListItem";
 import Skeleton from "../skeleton/Skeleton";
 import React, {useCallback, useEffect, useState} from "react";
 import mainService from "../../services/MainService";
@@ -42,9 +41,13 @@ const SearchList = () => {
         setLoadingNew(false)
     }, [myNextPageToken])
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     const infinityScroll = () => {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.body.scrollHeight - 300) {
-            if (searchParams) getSearchList(searchParams, myNextPageToken!)
+            if (searchParams) getSearchList(searchParams, myNextPageToken)
                 .then(data => {
                     dispatch(searchListFetched([...searchList, ...data.items]))
                     setMyNextPageToken(data.nextPageToken)

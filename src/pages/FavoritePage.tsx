@@ -1,6 +1,7 @@
 import {useSelector} from "react-redux";
 import {removeFavorites} from "../actions/MainActions";
 import AutoPagination from "../components/autoPagination/AutoPagination";
+import React from "react";
 
 
 const FavoritePage = () => {

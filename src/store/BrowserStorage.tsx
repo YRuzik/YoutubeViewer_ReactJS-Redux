@@ -1,4 +1,3 @@
-
 export function loadState(key: string) {
     try {
         const serializedState = localStorage.getItem(key);
@@ -9,10 +8,11 @@ export function loadState(key: string) {
     }
 }
 
-export async function saveState(key: string,state: any) {
+export async function saveState(key: string, state: any) {
     try {
         const serializedState = JSON.stringify(state);
         if (serializedState) localStorage.setItem(key, serializedState);
     } catch (e) {
+        //ignore
     }
 }
