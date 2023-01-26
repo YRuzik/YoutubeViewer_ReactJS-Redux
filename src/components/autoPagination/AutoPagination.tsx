@@ -22,12 +22,12 @@ const AutoPagination = ({arr, method, label}: any) => {
         dispatch(method(id))
     }, [])
 
-    function handleClick(event: any) {
-        setCurPage(Number(event.target.id))
+    function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
+        setCurPage(Number(event.currentTarget.id))
     }
 
     const [curPage, setCurPage] = useState(1)
-    const [videosPerPage, setVideosPerPage] = useState(4)
+    const [videosPerPage] = useState(4)
 
     const LastVideoID = curPage * videosPerPage;
     const FirstVideoID = LastVideoID - videosPerPage;

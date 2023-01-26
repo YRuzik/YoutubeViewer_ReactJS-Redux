@@ -1,19 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Routes} from "react-router-dom";
 import {Route} from "react-router-dom";
-import List from "./components/list/List";
 import Sidebar from "./components/sidebar/Sidebar";
 import Header from "./components/header/Header";
 import MainPage from "./pages/MainPage";
-import OverviewVideo from "./pages/OverviewVideo";
-import Modal from "./components/modal/Modal";
 import SearchList from "./components/searchList/SearchList";
 import FavoritePage from "./pages/FavoritePage";
 import WatchLaterPage from "./pages/WatchLaterPage";
 import Toaster from "./components/toaster/Toaster";
-
-
 
 function App() {
 

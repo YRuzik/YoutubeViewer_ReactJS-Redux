@@ -1,4 +1,4 @@
-import {channel, listItem} from "../interfaces/interfaces";
+import {channel, comment, listItem, video} from "../interfaces/interfaces";
 
 export const listFetched = (list: listItem[]) => {
     return {
@@ -33,7 +33,7 @@ export const currentChannelFetched = (currentChannel: channel) => {
     }
 }
 
-export const currentCommentsFetched = (currentComments: any) => {
+export const currentCommentsFetched = (currentComments: comment) => {
     return {
         type: 'CURRENT_COMMENTS_FETCHED',
         payload: currentComments
@@ -47,35 +47,35 @@ export const videoIDFetched = (videoID: string) => {
     }
 }
 
-export const searchListFetched = (searchList: any) => {
+export const searchListFetched = (searchList: video[]) => {
     return {
         type: 'SEARCH_LIST_FETCHED',
         payload: searchList
     }
 }
 
-export const addWatchLaterVideo = (watchLaterVideo: any) => {
+export const addWatchLaterVideo = (watchLaterVideo: video) => {
     return {
         type: 'ADD_WATCH_LATER_CONTENT',
         payload: watchLaterVideo
     }
 }
 
-export const removeWatchLaterVideo = (watchLaterID: any) => {
+export const removeWatchLaterVideo = (watchLaterID: string) => {
     return {
         type: 'REMOVE_ADD_WATCH_LATER_VIDEO',
         payload: watchLaterID
     }
 }
 
-export const addFavorites = (favoriteVideo: any) => {
+export const addFavorites = (favoriteVideo: video) => {
     return {
         type: 'ADD_FAVORITES',
         payload: favoriteVideo
     }
 }
 
-export const removeFavorites = (favoritesID: any) => {
+export const removeFavorites = (favoritesID: string) => {
     return {
         type: 'REMOVE_FAVORITES',
         payload: favoritesID

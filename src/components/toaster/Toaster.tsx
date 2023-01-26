@@ -9,7 +9,7 @@ const Toaster = () => {
     const [label, setLabel] = useState()
 
     useEffect(() => {
-        let setupTimer: any;
+        let setupTimer: ReturnType<typeof setTimeout>;
         if (toasterState.label.length > 0) setupTimer = setTimeout(() => {
             setLabel(toasterState.label)
             setIsChecked(true)

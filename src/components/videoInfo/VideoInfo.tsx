@@ -19,6 +19,7 @@ import {
 import {descriptionFormat, publishedFormat, viewsFormat} from "../../services/FormatService";
 import CommentsItem from "../commentsItem/CommentsItem";
 import React from "react";
+import {comment} from "../../interfaces/interfaces";
 
 const VideoInfo = ({statistics, snippet, videoID}: any) => {
     const {currentChannel, currentComments}: any = useSelector(state => state)
@@ -40,8 +41,8 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
         getAllCommentsOnVideo(videoID).then(data => dispatch(currentCommentsFetched(data.items)))
     }, [])
 
-    const renderComments = (arr: any) => {
-        return arr.map(({...props}, id: any) => {
+    const renderComments = (arr: comment[]) => {
+        return arr.map(({...props}, id: number) => {
             return <CommentsItem {...props} key={id}/>
         })
     }

@@ -91,3 +91,91 @@ export interface channel {
     }
 }
 
+export interface comment {
+    kind: string;
+    etag: string;
+    id: string;
+    snippet: {
+        authorDisplayName: string;
+        authorProfileImageUrl: string;
+        authorChannelUrl: string;
+        authorChannelId: {
+            value: string;
+        },
+        channelId: string;
+        videoId: string;
+        textDisplay: string;
+        textOriginal: string;
+        parentId: string;
+        canRate: boolean;
+        viewerRating: string;
+        likeCount: number;
+        moderationStatus: string;
+        publishedAt: string;
+        updatedAt: string;
+    }
+}
+
+export interface video {
+    contentDetails: {
+        caption: string
+        contentRating?: {}
+        definition: string
+        dimension: string
+        duration: string
+        licensedContent: true
+        projection: string
+    }
+    etag: string
+    id: string
+    kind: string
+    snippet: {
+        categoryId: string
+        channelId: string
+        channelTitle: string
+        defaultAudioLanguage: string
+        description: string
+        liveBroadcastContent: string
+        localized: {
+            description: string
+            title: string
+        }
+        publishedAt: string
+        tags: string[]
+        thumbnails: {
+            default?: {
+                url: string,
+                width: number,
+                height: number
+            }
+            high?: {
+                url: string,
+                width: number,
+                height: number
+            }
+            maxres?: {
+                url: string,
+                width: number,
+                height: number
+            }
+            medium?: {
+                url: string,
+                width: number,
+                height: number
+            }
+            standard?: {
+                url: string,
+                width: number,
+                height: number
+            }
+        }
+        title: string
+    }
+    statistics?: {
+        viewCount?: string,
+        likeCount?: string,
+        favoriteCount?: string,
+        commentCount?: string
+    }
+}
+

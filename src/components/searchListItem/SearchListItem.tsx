@@ -14,7 +14,7 @@ import {useDispatch} from "react-redux";
 import React from "react";
 
 
-const SearchListItem = ({props, snippet, id, onOpen}: any) => {
+const SearchListItem = ({snippet, id, onOpen}: any) => {
     const dispatch = useDispatch()
 
     return (
