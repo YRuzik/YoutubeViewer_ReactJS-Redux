@@ -10,8 +10,8 @@ const initialState: initialStates = {
     videoID: '',
     searchList: [],
 
-    watchLater: loadState('watchLater'),
-    favorites: loadState('favorites')
+    watchLater: loadState('watchLater') || [],
+    favorites: loadState('favorites') || []
 }
 
 

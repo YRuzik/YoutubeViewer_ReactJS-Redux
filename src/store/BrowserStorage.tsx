@@ -1,7 +1,7 @@
-const KEY = "watchLater";
+
 export function loadState(key: string) {
     try {
-        const serializedState = localStorage.getItem(KEY);
+        const serializedState = localStorage.getItem(key);
         if (serializedState === null) return undefined;
         return JSON.parse(serializedState) || '[]';
     } catch (e) {

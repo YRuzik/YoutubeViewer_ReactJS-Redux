@@ -16,7 +16,6 @@ import useOnClickOutside from "../../hooks/onClickOutside.hook";
 import mainService from "../../services/MainService";
 
 const ListItem = ({props, snippet, statistics, id, onOpen}: any) => {
-    const {watchLater}: any = useSelector(state => state)
 
     const dispatch = useDispatch()
     const onClickOutside = useOnClickOutside
