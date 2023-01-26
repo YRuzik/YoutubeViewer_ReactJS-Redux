@@ -6,12 +6,12 @@ export const ListItemContainer = styled.div`
   height: auto;
   display: inline-grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   justify-content: flex-start;
 `
 
 export const ItemContainer = styled.div`
-  width: 20.15rem;
+  width: 20.16rem;
   display: inline-block;
   padding: 0 0 2rem 0;
   transition: all 0.2s ease-in-out;
