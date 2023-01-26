@@ -81,3 +81,12 @@ export const removeFavorites = (favoritesID: any) => {
         payload: favoritesID
     }
 }
+
+export const setToaster = (label: string) => {
+    return {
+        type: 'SET_TOASTER',
+        payload: {
+            label
+        }
+    }
+}

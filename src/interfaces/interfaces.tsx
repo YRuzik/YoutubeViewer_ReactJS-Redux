@@ -9,6 +9,10 @@ export interface initialStates {
 
     watchLater: object[];
     favorites: object[];
+
+    toasterState: {
+        label: string;
+    }
 }
 
 export interface listItem {

@@ -11,6 +11,7 @@ import Modal from "./components/modal/Modal";
 import SearchList from "./components/searchList/SearchList";
 import FavoritePage from "./pages/FavoritePage";
 import WatchLaterPage from "./pages/WatchLaterPage";
+import Toaster from "./components/toaster/Toaster";
 
 
 
@@ -25,6 +26,7 @@ function App() {
          <div className="App">
             <Sidebar/>
             <Header/>
+             <Toaster/>
             <main>
 
                 <Routes>

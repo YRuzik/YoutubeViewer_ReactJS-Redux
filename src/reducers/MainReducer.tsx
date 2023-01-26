@@ -11,7 +11,11 @@ const initialState: initialStates = {
     searchList: [],
 
     watchLater: loadState('watchLater') || [],
-    favorites: loadState('favorites') || []
+    favorites: loadState('favorites') || [],
+
+    toasterState: {
+        label: ''
+    }
 }
 
 
@@ -106,8 +110,17 @@ const mainReducer = (state = initialState, action: any) => {
                 favorites: state.favorites.filter((item, id) => id !== newIDFavorites)
                 }
         }
-        default: return state
+
+        case 'SET_TOASTER': {
+            return {
+                ...state,
+                toasterState: {
+                    label: action.payload.label
+                }
             }
+        }
+        default: return state
+    }
 }
 
 export default mainReducer

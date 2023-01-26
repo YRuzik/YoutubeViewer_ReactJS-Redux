@@ -9,7 +9,7 @@ import {
 } from "./ListItem.style";
 import {publishedFormat, viewsFormat} from "../../services/FormatService";
 import {useDispatch} from "react-redux";
-import {addFavorites, addWatchLaterVideo, videoIDFetched} from "../../actions/MainActions";
+import {addFavorites, addWatchLaterVideo, setToaster, videoIDFetched} from "../../actions/MainActions";
 import {useRef, useState} from "react";
 import {SideBarIcon} from "../sidebar/Sidebar.style";
 import useOnClickOutside from "../../hooks/onClickOutside.hook";
@@ -36,11 +36,17 @@ const ListItem = ({props, snippet, statistics, id, onOpen}: any) => {
     const additionalBody = () => {
         return (
             <AdditionalContent ref={additionalWindow}>
-                <AdditionalLine onClick={() => getVideoId(id).then(data => dispatch(addWatchLaterVideo(data.items)))}>
+                <AdditionalLine onClick={() => {
+                    getVideoId(id).then(data => dispatch(addWatchLaterVideo(data.items)))
+                    dispatch(setToaster('Смотреть позже'))
+                }}>
                     <SideBarIcon style={{width: '2rem'}}><i className="fa-regular fa-clock"></i></SideBarIcon> Смотреть позже
                 </AdditionalLine>
 
-                <AdditionalLine onClick={() => getVideoId(id).then(data => dispatch(addFavorites(data.items)))}>
+                <AdditionalLine onClick={() => {
+                    getVideoId(id).then(data => dispatch(addFavorites(data.items)))
+                    dispatch(setToaster('Избранное'))
+                }}>
                     <SideBarIcon style={{width: '2rem'}}><i className="fa-regular fa-bookmark"></i></SideBarIcon> Избранное
                 </AdditionalLine>
             </AdditionalContent>
