@@ -3,6 +3,7 @@ import React from "react";
 import {viewsFormat} from "../../services/FormatService";
 
 const ChannelStatistics = ({statistics}: any) => {
+    const formatter = new Intl.NumberFormat("eu", {style: "decimal"})
 
     return (
         <StatisticsBody>
@@ -10,13 +11,13 @@ const ChannelStatistics = ({statistics}: any) => {
                 Статистика
             </StatisticLine>
             <StatisticLine>
-                {statistics.viewCount} просмотров
+                {formatter.format(statistics.viewCount) } просмотров
             </StatisticLine>
             <StatisticLine>
-                {statistics.subscriberCount} подписчиков
+                {formatter.format(statistics.subscriberCount)} подписчиков
             </StatisticLine>
             <StatisticLine>
-                {statistics.videoCount} видео
+                {formatter.format(statistics.videoCount)} видео
             </StatisticLine>
 
         </StatisticsBody>
