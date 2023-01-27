@@ -1,13 +1,12 @@
 import {StatisticLine, StatisticsBody} from "./ChannelStatistics.style";
 import React from "react";
-import {viewsFormat} from "../../services/FormatService";
 
 const ChannelStatistics = ({statistics}: any) => {
     const formatter = new Intl.NumberFormat("eu", {style: "decimal"})
 
     return (
         <StatisticsBody>
-            <StatisticLine>
+            <StatisticLine style={{fontWeight: "bold"}}>
                 Статистика
             </StatisticLine>
             <StatisticLine>

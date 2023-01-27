@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const VideoInfoContainer = styled.div`
-
+  width: 50%;
+  padding-left: 1rem;
 `
 
 export const VideoInfoActions = styled.div`
@@ -53,6 +54,8 @@ export const Description = styled.div`
   padding: 0.5rem;
   margin-top: 1rem;
   white-space: pre-line;
+  max-height: 10rem;
+  overflow-y: scroll;
   width: 100%;
   margin-bottom: 1rem;
   box-shadow: 0 0 15px rgba(0,0,0,.25);
@@ -88,13 +91,15 @@ export const LeaveComment = styled.input`
   height: 2.5rem;
   background: none;
   margin-bottom: 1rem;
-  width: 96.5%;
+  width: 90%;
   margin-left: 3rem;
   color: white;
 `
 
 export const CommentsContainer = styled.div`
-  
+  max-height: 10rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `
 
 export const PreloadContainer = styled.div`

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {ContentContainer} from "../components/listItem/ListItem.style";
 import mainService from "../services/MainService";
 import {useParams} from "react-router";
@@ -14,16 +14,19 @@ const OverviewChannel = () => {
     const {channelID} = useParams()
     const dispatch = useDispatch()
 
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
-        dispatch(listFetching())
         getVideosChannel(channelID!).then(data => dispatch(videosChannelFetched(data.items)))
             .then(() => getChannelId(channelID!).then(data => dispatch(currentChannelFetched(data.items[0]))))
+            .then(() => setLoading(true))
 
         return () => {
             dispatch(currentChannelFetched(JSON.parse('{}')))
             dispatch(videosChannelFetched([]))
+            setLoading(false)
         }
-    }, [])
+    }, [channelID])
 
     const renderSkeletons = (numberOfSkeletons: number ) => {
         const newArr = Array.from(Array(numberOfSkeletons).keys())
@@ -38,7 +41,7 @@ const OverviewChannel = () => {
 
     return (
         <ContentContainer>
-            {listStatus !== 'loading' ? <ChannelInfo/> : skeletons}
+            {loading ? <ChannelInfo/> : skeletons}
         </ContentContainer>
     )
 }

@@ -25,11 +25,6 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
     const {currentChannel, currentComments}: any = useSelector(state => state)
     const {getChannelId, getAllCommentsOnVideo} = mainService()
     const dispatch = useDispatch()
-    const [overflow, setOverflow] = useState(false)
-
-    const overflowToggler = () => {
-        setOverflow(!overflow)
-    }
 
     useEffect(() => {
         dispatch(listFetching())
@@ -73,10 +68,9 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
                     </div>
                 </VideoInfoActions>
 
-                <Description style={overflow ? {overflow: "auto", height: "auto"} : {overflow: "hidden", height: '10rem'}}>
+                <Description>
                     <DescriptionTitle>
                         {viewsFormat(statistics.viewCount)}. просмотров | {publishedFormat(snippet.publishedAt)}
-                        <OpenButton onClick={() => overflowToggler()}>{overflow ? 'Закрыть' : 'Открыть'}</OpenButton>
                     </DescriptionTitle>
                     <DescriptionContent>
                         {snippet.description.length > 0 ? descriptionFormat(snippet.description) : 'Описание отсутствует :('}

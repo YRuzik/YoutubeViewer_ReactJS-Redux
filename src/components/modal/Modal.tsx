@@ -1,4 +1,4 @@
-import {BackDrop, Content, ModalExit, WrapperModal} from "./Modal.style";
+import {BackDrop, Content, WrapperModal} from "./Modal.style";
 import {createPortal} from "react-dom";
 import OverviewVideo from "../../pages/OverviewVideo";
 import {useEffect, useRef} from "react";
@@ -25,7 +25,6 @@ const Modal = ({isOpen, onClose}: any) => {
         <>
             {isOpen ? <BackDrop>
                 <WrapperModal>
-                    <ModalExit onClick={onClose}>×</ModalExit>
                     <Content ref={modalWindow}>
                         <OverviewVideo/>
                     </Content>

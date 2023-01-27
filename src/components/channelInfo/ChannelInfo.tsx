@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {useSelector} from "react-redux";
 import {
     ChannelInfoBody,
@@ -10,11 +10,7 @@ import {
 import {ChannelAvatarSkeleton} from "../searchListItem/SearchListItem.style";
 import {viewsFormat} from "../../services/FormatService";
 import {SubscribeButton} from "../videoInfo/VideoInfo.style";
-import List from "../list/List";
-import ListItem from "../listItem/ListItem";
 import Modal from "../modal/Modal";
-import Skeleton from "../skeleton/Skeleton";
-import {ListItemContainer} from "../listItem/ListItem.style";
 import SearchListItem from "../searchListItem/SearchListItem";
 import ChannelStatistics from "../channelStatistics/ChannelStatistics";
 
@@ -30,17 +26,16 @@ const ChannelInfo = () => {
                 <SearchListItem key={id} {...props} onOpen={() => setIsOpen(true)}/>
             )
         })
-    }, [videosChannel])
+    }, [])
 
 
     const listOfVideos = renderListItems(videosChannel!)
 
-    console.log(statistics)
     return (
         <>
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}/>
             {currentChannel.snippet ?
                 <>
-                <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}/>
                 <ChannelInfoBody>
                     <ChannelInfoHeader>
                         <div style={{display: 'flex', alignItems: 'center'}}>
