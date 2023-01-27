@@ -90,3 +90,10 @@ export const setToaster = (label: string) => {
         }
     }
 }
+
+export const videosChannelFetched = (videosChannel: video[]) => {
+    return {
+        type: 'VIDEOS_CHANNEL_FETCHED',
+        payload: videosChannel
+    }
+}

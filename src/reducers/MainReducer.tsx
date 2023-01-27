@@ -9,6 +9,7 @@ const initialState: initialStates = {
     currentComments: [],
     videoID: '',
     searchList: [],
+    videosChannel: [],
 
     watchLater: loadState('watchLater') || [],
     favorites: loadState('favorites') || [],
@@ -117,6 +118,13 @@ const mainReducer = (state = initialState, action: any) => {
                 toasterState: {
                     label: action.payload.label
                 }
+            }
+        }
+
+        case 'VIDEOS_CHANNEL_FETCHED': {
+            return {
+                ...state,
+                videosChannel: action.payload
             }
         }
         default: return state

@@ -6,6 +6,7 @@ export interface initialStates {
     currentComments: {};
     videoID: string;
     searchList: object[];
+    videosChannel: object[];
 
     watchLater: object[];
     favorites: object[];

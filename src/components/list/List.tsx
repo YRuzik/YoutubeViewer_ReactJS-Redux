@@ -72,14 +72,14 @@ const List = () => {
     const skeletons = renderSkeletons(50)
 
     return (
-        <ContentContainer>
+        <>
             <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}/>
             <h1 style={{textAlign: "start", paddingBottom: '1rem'}}>Рекомендации</h1>
             <ListItemContainer>
                 {listStatus === 'loading' && first ? skeletons : listOfVideos}
                 {loadingNew ? renderSkeletons(8) : null}
             </ListItemContainer>
-        </ContentContainer>
+        </>
     )
 }
 

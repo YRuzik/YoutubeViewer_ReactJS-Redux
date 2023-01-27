@@ -36,7 +36,13 @@ const MainService = () => {
         )
     }
 
-    return {getList, getChannelId, getVideoId, getAllCommentsOnVideo, getSearchList}
+    const getVideosChannel = async (channelID: string) => {
+        return (
+            await request(`${_baseUrl}search?key=${_apiKey}&channelId=${channelID}&part=snippet,id&order=date&maxResults=50`)
+        )
+    }
+
+    return {getList, getChannelId, getVideoId, getAllCommentsOnVideo, getSearchList, getVideosChannel}
 }
 
 export default MainService

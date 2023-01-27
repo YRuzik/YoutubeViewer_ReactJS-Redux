@@ -36,7 +36,7 @@ const SearchListItem = ({snippet, id, onOpen}: any) => {
                         </SearchListItemStatistics>
                         <SearchListItemChannel>
                             <AvatarSkeleton></AvatarSkeleton>
-                            <ChannelTitle style={{paddingLeft: '3rem'}} to={`channels/${snippet.channelId}`}>{snippet.channelTitle}</ChannelTitle>
+                            <ChannelTitle style={{paddingLeft: '3rem'}} to={`/channels/${snippet.channelId}`}>{snippet.channelTitle}</ChannelTitle>
                         </SearchListItemChannel>
                         <SearchListItemDescription>
                             {snippet.description.length > 0 ? snippet.description : 'Описание отсутствует :('}

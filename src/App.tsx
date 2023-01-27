@@ -9,6 +9,7 @@ import SearchList from "./components/searchList/SearchList";
 import FavoritePage from "./pages/FavoritePage";
 import WatchLaterPage from "./pages/WatchLaterPage";
 import Toaster from "./components/toaster/Toaster";
+import OverviewChannel from "./pages/OverviewChannel";
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
 
                         <Route path={'search/:searchParams'} element={<SearchList/>}/>
 
-                        <Route path={'channels/:channelID'} element={''}/>
+                        <Route path={'channels/:channelID'} element={<OverviewChannel/>}/>
 
                         <Route path={'favorite'} element={<FavoritePage/>}/>
 
