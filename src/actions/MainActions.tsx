@@ -54,7 +54,7 @@ export const searchListFetched = (searchList: video[]) => {
     }
 }
 
-export const addWatchLaterVideo = (watchLaterVideo: video) => {
+export const addWatchLaterVideo = (watchLaterVideo: video | video[]) => {
     return {
         type: 'ADD_WATCH_LATER_CONTENT',
         payload: watchLaterVideo
@@ -68,7 +68,7 @@ export const removeWatchLaterVideo = (watchLaterID: string) => {
     }
 }
 
-export const addFavorites = (favoriteVideo: video) => {
+export const addFavorites = (favoriteVideo: video | video[]) => {
     return {
         type: 'ADD_FAVORITES',
         payload: favoriteVideo

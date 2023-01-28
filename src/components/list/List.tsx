@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import mainService from "../../services/MainService";
 import {listFetched, listFetching, listFetchingError} from "../../actions/MainActions";
 import ListItem from "../listItem/ListItem";
-import {ContentContainer, ListItemContainer} from "../listItem/ListItem.style";
+import {ListItemContainer} from "../listItem/ListItem.style";
 import Skeleton from "../skeleton/Skeleton";
 import Modal from "../modal/Modal";
 

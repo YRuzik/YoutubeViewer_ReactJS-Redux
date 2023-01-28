@@ -21,11 +21,11 @@ const Sidebar = () => {
             <SidebarContainer>
 
                 <SidebarLogo>
-                    <i className='fas fa-shekel-sign fa-4x' style={{color: '#A187C5'}}></i>
+                    <i className='fas fa-shekel-sign fa-4x' style={{color: '#A187C1'}}></i>
                     <h2>Now.Vid</h2>
                 </SidebarLogo>
 
-                <SidebarItemHeader> <h5>Меню</h5>
+                <SidebarItemHeader>
                     <NavLink style={({isActive}) => isActive ? on : {color: 'white'}} to={'/'}>
                     <SideBarItem>
                         <SideBarIcon><i className='fa-solid fa-house'></i></SideBarIcon> Главная
@@ -33,10 +33,16 @@ const Sidebar = () => {
                     </NavLink>
                 </SidebarItemHeader>
 
-                <SidebarItemHeader> <h5>Закладки</h5>
+                <SidebarItemHeader>
                     <NavLink to={'/watchLater'}>
                         <SideBarItem >
                              <SideBarIcon><i className="fa-regular fa-clock"></i></SideBarIcon> Смотреть позже
+                        </SideBarItem>
+                    </NavLink>
+
+                    <NavLink style={{color: "white"}} to={'/liked'}>
+                        <SideBarItem>
+                            <SideBarIcon><i className="fa-regular fa-heart"></i></SideBarIcon> Понравившиеся
                         </SideBarItem>
                     </NavLink>
 
@@ -45,9 +51,15 @@ const Sidebar = () => {
                              <SideBarIcon><i className="fa-regular fa-bookmark"></i></SideBarIcon> Избранное
                         </SideBarItem>
                     </NavLink>
+
+                    <NavLink style={{color: "white"}} to={'/subscribes'}>
+                        <SideBarItem>
+                            <SideBarIcon><i className="fa-regular fa-user"></i></SideBarIcon> Подписки
+                        </SideBarItem>
+                    </NavLink>
                 </SidebarItemHeader>
 
-                <SidebarItemHeader> <h5>Основное</h5>
+                <SidebarItemHeader>
                     <SideBarItem>
                          <SideBarIcon><i className='fa fa-sign-out'></i></SideBarIcon> Выйти
                     </SideBarItem>

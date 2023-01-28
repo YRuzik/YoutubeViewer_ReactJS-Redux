@@ -13,6 +13,8 @@ const initialState: initialStates = {
 
     watchLater: loadState('watchLater') || [],
     favorites: loadState('favorites') || [],
+    subscribes: loadState('subscribes') || [],
+    liked: loadState('liked') || [],
 
     toasterState: {
         label: ''
@@ -81,7 +83,6 @@ const mainReducer = (state = initialState, action: any) => {
                 listStatus: 'idle',
             }
         }
-
         case 'REMOVE_ADD_WATCH_LATER_VIDEO': {
             const newID = action.payload;
             return {
@@ -89,7 +90,6 @@ const mainReducer = (state = initialState, action: any) => {
                 watchLater: state.watchLater.filter((item, id) => id !== newID)
             }
         }
-
         case 'ADD_FAVORITES': {
             const myID = action.payload[0].id
             const dups = state.favorites.find((obj: any) => obj.id === myID)
@@ -103,7 +103,6 @@ const mainReducer = (state = initialState, action: any) => {
                 listStatus: 'idle',
             }
         }
-
         case 'REMOVE_FAVORITES': {
             const newIDFavorites = action.payload;
             return {
@@ -111,7 +110,19 @@ const mainReducer = (state = initialState, action: any) => {
                 favorites: state.favorites.filter((item, id) => id !== newIDFavorites)
                 }
         }
-
+        case 'ADD_LIKED': {
+            const {id} = action.payload[0]
+            const dup = state.watchLater.find((obj: any) => obj.id === id)
+            return dup ? {
+                ...state,
+                liked: state.liked,
+                listStatus: 'idle',
+            } : {
+                ...state,
+                liked: [...state.liked, ...action.payload],
+                listStatus: 'idle',
+            }
+        }
         case 'SET_TOASTER': {
             return {
                 ...state,
@@ -120,7 +131,6 @@ const mainReducer = (state = initialState, action: any) => {
                 }
             }
         }
-
         case 'VIDEOS_CHANNEL_FETCHED': {
             return {
                 ...state,

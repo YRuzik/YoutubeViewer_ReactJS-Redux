@@ -10,6 +10,8 @@ export interface initialStates {
 
     watchLater: object[];
     favorites: object[];
+    subscribes: object[];
+    liked: object[];
 
     toasterState: {
         label: string;

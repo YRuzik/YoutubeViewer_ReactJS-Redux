@@ -1,7 +1,7 @@
 import {
     ChannelInfo, Comments, CommentsContainer,
     Description, DescriptionContent, DescriptionTitle, LeaveComment,
-    LikeButton, OpenButton,
+    LikeButton,
     SubscribeButton,
     VideoInfoActions,
     VideoInfoContainer
@@ -9,12 +9,14 @@ import {
 import {AvatarSkeleton} from "../listItem/ListItem.style";
 import mainService from "../../services/MainService";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {
+    addFavorites,
+    addWatchLaterVideo,
     currentChannelFetched,
     currentCommentsFetched,
     listFetching,
-    listFetchingError
+    listFetchingError, setToaster
 } from "../../actions/MainActions";
 import {descriptionFormat, publishedFormat, viewsFormat} from "../../services/FormatService";
 import CommentsItem from "../commentsItem/CommentsItem";
@@ -22,7 +24,7 @@ import React from "react";
 import {comment} from "../../interfaces/interfaces";
 
 const VideoInfo = ({statistics, snippet, videoID}: any) => {
-    const {currentChannel, currentComments}: any = useSelector(state => state)
+    const {currentChannel, currentComments, currentVideo}: any = useSelector(state => state)
     const {getChannelId, getAllCommentsOnVideo} = mainService()
     const dispatch = useDispatch()
 
@@ -41,8 +43,6 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
             return <CommentsItem {...props} key={id}/>
         })
     }
-
-    console.log(currentComments)
 
     const comments = renderComments(currentComments)
 
@@ -63,7 +63,21 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
                         <SubscribeButton>Подписаться</SubscribeButton>
                     </div>
                     <div>
-                        <LikeButton><i className="fa-regular fa-heart fa-lg"></i> {viewsFormat(statistics.likeCount)}</LikeButton>
+                        <LikeButton onClick={() => {
+                            dispatch(addWatchLaterVideo(Array(currentVideo)))
+                            dispatch(setToaster('Смотреть позже'))
+                        }
+                        }><i className="fa-regular fa-clock fa-lg"></i></LikeButton>
+                        <LikeButton onClick={() => {
+                            dispatch(addFavorites(Array(currentVideo)))
+                            dispatch(setToaster('Избранное'))
+                        }
+                        }><i className="fa-regular fa-bookmark fa-lg"></i></LikeButton>
+                        <LikeButton onClick={() => {
+                            dispatch(addWatchLaterVideo(currentVideo))
+                            dispatch(setToaster('Понравившиеся'))
+                        }
+                        }><i className="fa-regular fa-heart fa-lg"></i> {viewsFormat(statistics.likeCount)}</LikeButton>
                         <LikeButton><i className="fa-solid fa-heart-crack fa-lg"></i></LikeButton>
                     </div>
                 </VideoInfoActions>

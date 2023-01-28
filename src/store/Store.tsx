@@ -8,6 +8,8 @@ export const store = createStore(mainReducer, composeWithDevTools());
 store.subscribe(() => {
     saveState('favorites', store.getState().favorites)
     saveState('watchLater', store.getState().watchLater)
+    saveState('subscribers', store.getState().subscribes)
+    saveState('liked', store.getState().liked)
 })
 
 

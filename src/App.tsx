@@ -10,6 +10,8 @@ import FavoritePage from "./pages/FavoritePage";
 import WatchLaterPage from "./pages/WatchLaterPage";
 import Toaster from "./components/toaster/Toaster";
 import OverviewChannel from "./pages/OverviewChannel";
+import LikedPage from "./pages/LikedPage";
+import SubscribersPage from "./pages/SubscribersPage";
 
 function App() {
 
@@ -38,6 +40,10 @@ function App() {
                         <Route path={'favorite'} element={<FavoritePage/>}/>
 
                         <Route path={'watchLater'} element={<WatchLaterPage/>}/>
+
+                        <Route path={'liked'} element={<LikedPage/>}/>
+
+                        <Route path={'subscribes'} element={<SubscribersPage/>}/>
 
                     </Route>
 

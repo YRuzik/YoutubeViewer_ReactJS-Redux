@@ -7,6 +7,7 @@ export const ToasterBody = styled.div`
   left: 1rem;
   border-radius: 10px;
   padding: 1rem;
+  z-index: 100000000000;
 
   animation: toast-slide-up 0.3s;
 

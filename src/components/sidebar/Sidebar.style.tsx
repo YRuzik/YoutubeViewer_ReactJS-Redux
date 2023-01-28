@@ -15,8 +15,8 @@ export const SidebarContainer = styled.div`
 
 export const SidebarLogo = styled.div`
   display: flex;
-  justify-content: start;
-  padding: 2rem 1rem 1rem 1.5rem;
+  justify-content: center;
+  padding: 1rem 0 1rem 0;
   align-items: center;
   margin-left: 0.3rem;
   
@@ -29,6 +29,11 @@ export const SidebarLogo = styled.div`
 export const SidebarItemHeader = styled.ul`
   text-align: start;
   vertical-align: center;
+  border-bottom: 1px solid rgba(255,255,255,.25);
+  
+  &:last-child {
+    border: none;
+  }
 
   
   h5{
@@ -57,8 +62,10 @@ export const SideBarItem = styled.li`
     &:hover{
       color: white;
       opacity: 1;
+      background: rgba(255,255,255,.025);
       border-left: 3px solid #A187C5;
     }
+  
 `
 
 export const SideBarIcon = styled.div`
