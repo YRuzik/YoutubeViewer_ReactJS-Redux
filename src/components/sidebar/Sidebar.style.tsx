@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const SidebarWrapper = styled.div`
   
@@ -72,4 +73,41 @@ export const SideBarIcon = styled.div`
   width: 3rem;
   display: flex;
   justify-content: center;
+`
+
+export const SideBarSubsMore = styled.div`
+  display: flex;
+  transform: rotate(90deg);
+  align-items: center;
+  margin-top: 1.1rem;
+  transition: all 0.2s ease;
+`
+
+export const SubsContainer = styled.div`
+  padding: 1rem 1rem 1rem 0.75rem;
+  max-height: 20rem;
+  overflow-y: scroll;
+  position: relative;
+`
+
+export const SubsItem = styled(Link)`
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  cursor: pointer;
+  opacity: 0.75;
+  padding: 1rem 1rem 1rem 1rem;
+  transition: all 0.2s ease;
+  border-radius: 10px;
+  color: white;
+  
+  &:hover {
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(153, 50, 204,.3);
+  }
+`
+
+export const SubsItemTitle = styled.div`
+  padding-left: 3.5rem;
+  font-size: 1.5rem;
 `

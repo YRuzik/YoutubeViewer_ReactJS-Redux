@@ -13,7 +13,7 @@ const MiniBody = styled.div`
 `
 
 const OverviewVideo = () => {
-    const {currentVideo, listStatus, videoID}: any = useSelector(state => state)
+    const {currentVideo, videoID}: any = useSelector(state => state)
 
     const {getVideoId} = mainService()
     const dispatch = useDispatch()
@@ -26,10 +26,12 @@ const OverviewVideo = () => {
 
     return (
         <>
-            <MiniBody>
-                {listStatus === 'loading' ? <Skeleton/> : <Player videoID={videoID}/>}
-                {currentVideo.snippet !== undefined ? <VideoInfo snippet={currentVideo.snippet} statistics={currentVideo.statistics} videoID={videoID}/> : null}
-            </MiniBody>
+            {currentVideo.snippet === undefined ? <Skeleton/> :
+                <MiniBody>
+                    <Player videoID={videoID}/>
+                    <VideoInfo snippet={currentVideo.snippet} statistics={currentVideo.statistics} videoID={videoID}/>
+                </MiniBody>
+            }
         </>
     )
 }

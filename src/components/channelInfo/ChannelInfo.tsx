@@ -1,5 +1,5 @@
-import React, {useCallback, useState} from "react";
-import {useSelector} from "react-redux";
+import React, {useCallback, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {
     ChannelInfoBody,
     ChannelInfoHeader,
@@ -13,10 +13,13 @@ import {SubscribeButton} from "../videoInfo/VideoInfo.style";
 import Modal from "../modal/Modal";
 import SearchListItem from "../searchListItem/SearchListItem";
 import ChannelStatistics from "../channelStatistics/ChannelStatistics";
+import {addSubscribers, removeSubscribers, setToaster} from "../../actions/MainActions";
 
 const ChannelInfo = () => {
-    const {currentChannel, videosChannel}: any = useSelector(state => state)
+    const {currentChannel, videosChannel, subscribes}: any = useSelector(state => state)
     const {snippet, statistics} = currentChannel
+    const [subButton, setSubButton] = useState(false)
+    const dispatch = useDispatch()
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -28,6 +31,10 @@ const ChannelInfo = () => {
         })
     }, [])
 
+    useEffect(() => {
+        const exists = subscribes.find((obj: any) => obj.id === currentChannel.id) || ''
+        if (exists !== '') setSubButton(true)
+    }, [])
 
     const listOfVideos = renderListItems(videosChannel!)
 
@@ -47,7 +54,22 @@ const ChannelInfo = () => {
                                 <p>{viewsFormat(statistics.subscriberCount)} подписчиков</p>
                             </ChannelInfoTitle>
                         </div>
-                        <SubscribeButton style={{padding: '1rem 2rem 1rem 2rem', fontSize: '1.2rem'}}>Подписаться</SubscribeButton>
+                        {subButton ?
+                            <SubscribeButton style={{padding: '1rem 2rem 1rem 2rem', fontSize: '1.2rem'}} onClick={(event) => {
+                                event.preventDefault()
+                                dispatch(removeSubscribers(currentChannel.id))
+                                setSubButton(false)
+                            }
+                            }>Отписаться</SubscribeButton>
+                            :
+                            <SubscribeButton style={{padding: '1rem 2rem 1rem 2rem', fontSize: '1.2rem'}} onClick={(event) => {
+                                event.preventDefault()
+                                dispatch(addSubscribers(Array(currentChannel)))
+                                dispatch(setToaster(snippet.title, true))
+                                setSubButton(true)
+                            }
+                            }>Подписаться</SubscribeButton>
+                        }
                     </ChannelInfoHeader>
 
                     <ChannelMainHeader>

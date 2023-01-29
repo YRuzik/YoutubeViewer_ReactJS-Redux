@@ -27,7 +27,7 @@ const Toaster = () => {
             {isChecked ?
             <ToasterBody>
                 <ToasterLabel>
-                    Добавлено в плейлист &#34;{label}&#34;.
+                    {toasterState.sub ? `Вы подписались на канал ${label}` : `Добавлено в плейлист "${label}"`}
                 </ToasterLabel>
             </ToasterBody>
                 : null}

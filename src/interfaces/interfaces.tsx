@@ -15,6 +15,7 @@ export interface initialStates {
 
     toasterState: {
         label: string;
+        sub: boolean
     }
 }
 

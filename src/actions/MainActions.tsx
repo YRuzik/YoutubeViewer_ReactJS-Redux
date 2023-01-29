@@ -82,11 +82,40 @@ export const removeFavorites = (favoritesID: string) => {
     }
 }
 
-export const setToaster = (label: string) => {
+export const addLiked = (likedVideo: video | video[]) => {
+    return {
+        type: 'ADD_LIKED',
+        payload: likedVideo
+    }
+}
+
+export const removeLiked = (likedID: string) => {
+    return {
+        type: 'REMOVE_LIKED',
+        payload: likedID
+    }
+}
+
+export const addSubscribers = (channel: channel | channel[]) => {
+    return {
+        type: 'ADD_SUBSCRIBERS',
+        payload: channel
+    }
+}
+
+export const removeSubscribers = (channelID: string) => {
+    return {
+        type: 'REMOVE_SUBSCRIBERS',
+        payload: channelID
+    }
+}
+
+export const setToaster = (label: string, sub = false) => {
     return {
         type: 'SET_TOASTER',
         payload: {
-            label
+            label,
+            sub
         }
     }
 }

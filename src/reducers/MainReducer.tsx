@@ -1,4 +1,4 @@
-import {initialStates} from "../interfaces/interfaces";
+import {channel, initialStates} from "../interfaces/interfaces";
 import {loadState} from "../store/BrowserStorage";
 
 const initialState: initialStates = {
@@ -13,11 +13,12 @@ const initialState: initialStates = {
 
     watchLater: loadState('watchLater') || [],
     favorites: loadState('favorites') || [],
-    subscribes: loadState('subscribes') || [],
+    subscribes: loadState('subscribers') || [],
     liked: loadState('liked') || [],
 
     toasterState: {
-        label: ''
+        label: '',
+        sub: false
     }
 }
 
@@ -112,7 +113,7 @@ const mainReducer = (state = initialState, action: any) => {
         }
         case 'ADD_LIKED': {
             const {id} = action.payload[0]
-            const dup = state.watchLater.find((obj: any) => obj.id === id)
+            const dup = state.liked.find((obj: any) => obj.id === id)
             return dup ? {
                 ...state,
                 liked: state.liked,
@@ -123,11 +124,39 @@ const mainReducer = (state = initialState, action: any) => {
                 listStatus: 'idle',
             }
         }
+        case 'REMOVE_LIKED': {
+            const newIDLiked = action.payload;
+            return {
+                ...state,
+                liked: state.liked.filter((item, id) => id !== newIDLiked)
+            }
+        }
+        case 'ADD_SUBSCRIBERS': {
+            const {id} = action.payload[0]
+            const dup = state.subscribes.find((obj: any) => obj.id === id)
+            return dup ? {
+                ...state,
+                subscribes: state.subscribes,
+                listStatus: 'idle',
+            } : {
+                ...state,
+                subscribes: [...state.subscribes, ...action.payload],
+                listStatus: 'idle',
+            }
+        }
+        case 'REMOVE_SUBSCRIBERS': {
+            const dup = state.subscribes.find((obj: any) => obj.id === action.payload)
+            return {
+                ...state,
+                subscribes: state.subscribes.filter((item) => item !== dup)
+            }
+        }
         case 'SET_TOASTER': {
             return {
                 ...state,
                 toasterState: {
-                    label: action.payload.label
+                    label: action.payload.label,
+                    sub: action.payload.sub
                 }
             }
         }

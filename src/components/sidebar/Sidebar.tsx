@@ -3,18 +3,27 @@ import {
     SideBarIcon,
     SideBarItem,
     SidebarItemHeader,
-    SidebarLogo,
-    SidebarWrapper
+    SidebarLogo, SideBarSubsMore,
+    SidebarWrapper, SubsContainer
 } from "./Sidebar.style";
 import {NavLink} from "react-router-dom";
-import React from "react";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import {channel} from "../../interfaces/interfaces";
+import SidebarSubsItem from "./SidebarSubsItem";
 
 
 const Sidebar = () => {
-    const on = {
-        opacity: '1',
-        color: 'white'
+    const {subscribes}: any = useSelector(state => state)
+    const [showSubs, setShowSubs] = useState(false)
+
+    const renderSubs = (arr: channel[]) => {
+        return arr.map(({...props}, id: number) => {
+            return <SidebarSubsItem {...props} key={id}/>
+        })
     }
+    console.log(subscribes)
+    const subs = renderSubs(subscribes || [])
 
     return (
         <SidebarWrapper>
@@ -26,7 +35,7 @@ const Sidebar = () => {
                 </SidebarLogo>
 
                 <SidebarItemHeader>
-                    <NavLink style={({isActive}) => isActive ? on : {color: 'white'}} to={'/'}>
+                    <NavLink to={'/'}>
                     <SideBarItem>
                         <SideBarIcon><i className='fa-solid fa-house'></i></SideBarIcon> Главная
                     </SideBarItem>
@@ -52,11 +61,20 @@ const Sidebar = () => {
                         </SideBarItem>
                     </NavLink>
 
-                    <NavLink style={{color: "white"}} to={'/subscribes'}>
-                        <SideBarItem>
+                </SidebarItemHeader>
+
+                <SidebarItemHeader>
+                    <a style={showSubs ? {color: "white", opacity: 1} : {color: "white"}} onClick={() => setShowSubs(!showSubs)}>
+                        <SideBarItem style={showSubs ? {color: "white", opacity: 1} : {color: "white"}}>
                             <SideBarIcon><i className="fa-regular fa-user"></i></SideBarIcon> Подписки
+                            <SideBarSubsMore style={showSubs ? {transform: 'rotate(0)', margin: '0.25rem 0 0 0.5rem'} : {}}><i className="fa-sharp fa-solid fa-angle-right"></i></SideBarSubsMore>
                         </SideBarItem>
-                    </NavLink>
+                    </a>
+                    {showSubs ?
+                        <SubsContainer>
+                            {subs.length > 0 ? subs : 'Пусто :('}
+                        </SubsContainer>
+                    : null}
                 </SidebarItemHeader>
 
                 <SidebarItemHeader>
@@ -64,7 +82,6 @@ const Sidebar = () => {
                          <SideBarIcon><i className='fa fa-sign-out'></i></SideBarIcon> Выйти
                     </SideBarItem>
                 </SidebarItemHeader>
-
             </SidebarContainer>
         </SidebarWrapper>
     )

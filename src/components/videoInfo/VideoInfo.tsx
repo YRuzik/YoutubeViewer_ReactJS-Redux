@@ -9,14 +9,14 @@ import {
 import {AvatarSkeleton} from "../listItem/ListItem.style";
 import mainService from "../../services/MainService";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {
-    addFavorites,
+    addFavorites, addLiked, addSubscribers,
     addWatchLaterVideo,
     currentChannelFetched,
     currentCommentsFetched,
     listFetching,
-    listFetchingError, setToaster
+    listFetchingError, removeLiked, removeSubscribers, setToaster
 } from "../../actions/MainActions";
 import {descriptionFormat, publishedFormat, viewsFormat} from "../../services/FormatService";
 import CommentsItem from "../commentsItem/CommentsItem";
@@ -24,7 +24,8 @@ import React from "react";
 import {comment} from "../../interfaces/interfaces";
 
 const VideoInfo = ({statistics, snippet, videoID}: any) => {
-    const {currentChannel, currentComments, currentVideo}: any = useSelector(state => state)
+    const {currentChannel, currentComments, currentVideo, subscribes}: any = useSelector(state => state)
+    const [subButton, setSubButton] = useState(false)
     const {getChannelId, getAllCommentsOnVideo} = mainService()
     const dispatch = useDispatch()
 
@@ -37,6 +38,11 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
     useEffect(() => {
         getAllCommentsOnVideo(videoID).then(data => dispatch(currentCommentsFetched(data.items)))
     }, [])
+
+    useEffect(() => {
+        const exists = subscribes.find((obj: any) => obj.id === currentChannel.id) || ''
+        if (exists !== '') setSubButton(true)
+    }, [currentVideo])
 
     const renderComments = (arr: comment[]) => {
         return arr.map(({...props}, id: number) => {
@@ -60,7 +66,22 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
                                 <span style={{opacity: 0.5}}>{viewsFormat(currentChannel.statistics.subscriberCount)} подписчиков</span>
                             </div>
                         </ChannelInfo>
-                        <SubscribeButton>Подписаться</SubscribeButton>
+                        {subButton ?
+                            <SubscribeButton onClick={(event) => {
+                                event.preventDefault()
+                                dispatch(removeSubscribers(currentChannel.id))
+                                setSubButton(false)
+                            }
+                            }>Отписаться</SubscribeButton>
+                            :
+                            <SubscribeButton onClick={(event) => {
+                                event.preventDefault()
+                                dispatch(addSubscribers(Array(currentChannel)))
+                                dispatch(setToaster(currentChannel.snippet.title, true))
+                                setSubButton(true)
+                            }
+                            }>Подписаться</SubscribeButton>
+                        }
                     </div>
                     <div>
                         <LikeButton onClick={() => {
@@ -74,11 +95,10 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
                         }
                         }><i className="fa-regular fa-bookmark fa-lg"></i></LikeButton>
                         <LikeButton onClick={() => {
-                            dispatch(addWatchLaterVideo(currentVideo))
+                            dispatch(addLiked(Array(currentVideo)))
                             dispatch(setToaster('Понравившиеся'))
                         }
                         }><i className="fa-regular fa-heart fa-lg"></i> {viewsFormat(statistics.likeCount)}</LikeButton>
-                        <LikeButton><i className="fa-solid fa-heart-crack fa-lg"></i></LikeButton>
                     </div>
                 </VideoInfoActions>
 
