@@ -9,14 +9,14 @@ import {
 import {AvatarSkeleton} from "../listItem/ListItem.style";
 import mainService from "../../services/MainService";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect} from "react";
 import {
     addFavorites, addLiked, addSubscribers,
     addWatchLaterVideo,
     currentChannelFetched,
     currentCommentsFetched,
     listFetching,
-    listFetchingError, removeLiked, removeSubscribers, setToaster
+    listFetchingError, removeSubscribers, setToaster
 } from "../../actions/MainActions";
 import {descriptionFormat, publishedFormat, viewsFormat} from "../../services/FormatService";
 import CommentsItem from "../commentsItem/CommentsItem";
@@ -25,7 +25,6 @@ import {comment} from "../../interfaces/interfaces";
 
 const VideoInfo = ({statistics, snippet, videoID}: any) => {
     const {currentChannel, currentComments, currentVideo, subscribes}: any = useSelector(state => state)
-    const [subButton, setSubButton] = useState(false)
     const {getChannelId, getAllCommentsOnVideo} = mainService()
     const dispatch = useDispatch()
 
@@ -39,10 +38,27 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
         getAllCommentsOnVideo(videoID).then(data => dispatch(currentCommentsFetched(data.items)))
     }, [])
 
-    useEffect(() => {
+    const renderSubButton = useCallback(() => {
         const exists = subscribes.find((obj: any) => obj.id === currentChannel.id) || ''
-        if (exists !== '') setSubButton(true)
-    }, [currentVideo])
+        if (exists) {
+            return (
+                <SubscribeButton onClick={(event) => {
+                    event.preventDefault()
+                    dispatch(removeSubscribers(currentChannel.id))
+                }
+                }>Отписаться</SubscribeButton>
+            )
+        }
+        else return (
+            <SubscribeButton onClick={(event) => {
+                event.preventDefault()
+                dispatch(addSubscribers(Array(currentChannel)))
+                dispatch(setToaster(currentChannel.snippet.title, true))
+            }
+            }>Подписаться</SubscribeButton>
+        )
+    }, [currentChannel, subscribes])
+
 
     const renderComments = (arr: comment[]) => {
         return arr.map(({...props}, id: number) => {
@@ -66,22 +82,7 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
                                 <span style={{opacity: 0.5}}>{viewsFormat(currentChannel.statistics.subscriberCount)} подписчиков</span>
                             </div>
                         </ChannelInfo>
-                        {subButton ?
-                            <SubscribeButton onClick={(event) => {
-                                event.preventDefault()
-                                dispatch(removeSubscribers(currentChannel.id))
-                                setSubButton(false)
-                            }
-                            }>Отписаться</SubscribeButton>
-                            :
-                            <SubscribeButton onClick={(event) => {
-                                event.preventDefault()
-                                dispatch(addSubscribers(Array(currentChannel)))
-                                dispatch(setToaster(currentChannel.snippet.title, true))
-                                setSubButton(true)
-                            }
-                            }>Подписаться</SubscribeButton>
-                        }
+                        {renderSubButton()}
                     </div>
                     <div>
                         <LikeButton onClick={() => {
@@ -115,7 +116,7 @@ const VideoInfo = ({statistics, snippet, videoID}: any) => {
                     <h3 style={{paddingBottom: '1rem'}}>{currentComments.length > 0 ? currentComments.length : null} комментариев</h3>
                     <AvatarSkeleton></AvatarSkeleton>
                     <LeaveComment placeholder={'Оставить комментарий...'}/>
-                    <CommentsContainer>
+                    <CommentsContainer style={snippet.description.length > 0 ? {} : {maxHeight: '18.2rem'}}>
                         {currentComments.length > 0 ? comments : null}
                     </CommentsContainer>
                 </Comments>

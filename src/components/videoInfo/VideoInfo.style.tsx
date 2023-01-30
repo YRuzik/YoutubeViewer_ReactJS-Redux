@@ -55,7 +55,7 @@ export const Description = styled.div`
   margin-top: 1rem;
   white-space: pre-line;
   max-height: 10rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   margin-bottom: 1rem;
   box-shadow: 0 0 15px rgba(0,0,0,.25);

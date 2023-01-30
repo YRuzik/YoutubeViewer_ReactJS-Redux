@@ -22,7 +22,7 @@ const Sidebar = () => {
             return <SidebarSubsItem {...props} key={id}/>
         })
     }
-    console.log(subscribes)
+
     const subs = renderSubs(subscribes || [])
 
     return (

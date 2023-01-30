@@ -8,14 +8,15 @@ import {
 } from "./SearchListItem.style";
 import {publishedFormat} from "../../services/FormatService";
 import {AvatarSkeleton, ChannelTitle} from "../listItem/ListItem.style";
-import {SubscribeButton} from "../videoInfo/VideoInfo.style";
 import {videoIDFetched} from "../../actions/MainActions";
 import {useDispatch} from "react-redux";
 import React from "react";
+import {useNavigate} from "react-router";
 
 
 const SearchListItem = ({snippet, id, onOpen}: any) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     return (
         <>
@@ -44,7 +45,7 @@ const SearchListItem = ({snippet, id, onOpen}: any) => {
                     </SearchListItemBody>
                 </SearchListItemContainer>
                 :
-                <SearchListItemContainer>
+                <SearchListItemContainer onClick={() => navigate(`/channels/${id.channelId}`)}>
 
                     <ChannelSearchListThumbNail>
                         <ChannelAvatarSkeleton>
@@ -60,7 +61,6 @@ const SearchListItem = ({snippet, id, onOpen}: any) => {
                             {snippet.description.length > 0 ? snippet.description : 'Описание отсутствует :('}
                         </SearchListItemDescription>
 
-                        <SubscribeButton style={{margin: '3rem 0 0 0'}}>Подписаться</SubscribeButton>
                     </SearchListItemBody>
 
                 </SearchListItemContainer>

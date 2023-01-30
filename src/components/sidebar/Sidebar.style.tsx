@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 
 export const SidebarWrapper = styled.div`
-  
+    
 `
 
 export const SidebarContainer = styled.div`
@@ -35,7 +35,6 @@ export const SidebarItemHeader = styled.ul`
   &:last-child {
     border: none;
   }
-
   
   h5{
     opacity: 0.5;
@@ -86,7 +85,7 @@ export const SideBarSubsMore = styled.div`
 export const SubsContainer = styled.div`
   padding: 1rem 1rem 1rem 0.75rem;
   max-height: 20rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   position: relative;
 `
 
